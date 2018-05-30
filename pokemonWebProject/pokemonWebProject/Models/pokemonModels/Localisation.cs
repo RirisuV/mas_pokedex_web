@@ -5,14 +5,16 @@ using System.Web;
 
 namespace pokemonWebProject.Models.pokemonModels
 {
-    public class Ability
+    public class Localisation
     {
 
-        public int abilityID { get; set; }
+        public int localisationID { get; set; }
 
         public string name { get; set; }
 
         public string description { get; set; }
+
+        public bool isCity { get; set; }
 
     }
 }

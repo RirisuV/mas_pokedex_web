@@ -9,7 +9,7 @@ namespace pokemonWebProject.Models.pokemonModels
     {
 
 
-        public int PokemonSpeciesID { get; set; }
+        public int pokemonSpeciesID { get; set; }
 
         public int number { get; set; }
 

@@ -9,7 +9,7 @@ namespace pokemonWebProject.Models.pokemonModels
     public class Person
     {
         [Key]
-        public int PersonID { get; set; }
+        public int personID { get; set; }
 
         [Required]
         [MaxLength(50)]

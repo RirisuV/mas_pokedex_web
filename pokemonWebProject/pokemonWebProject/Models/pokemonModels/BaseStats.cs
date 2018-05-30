@@ -8,7 +8,7 @@ namespace pokemonWebProject.Models.pokemonModels
     public class BaseStats
     {
 
-        public int BaseStatsID { get; set; }
+        public int baseStatsID { get; set; }
 
         public int hpStat { get; set; }
 
