@@ -12,5 +12,7 @@ namespace pokemonWebProject.Models.pokemonModels
 
         public int holdedPokemonAmount { get; set; }
 
+        public int sallary { get; set; }
+
     }
 }
