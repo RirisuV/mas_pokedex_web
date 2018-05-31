@@ -211,6 +211,7 @@
     <Compile Include="Models\pokemonModels\Localisation.cs" />
     <Compile Include="Models\pokemonModels\Move.cs" />
     <Compile Include="Models\pokemonModels\Person.cs" />
+    <Compile Include="Models\pokemonModels\Pokemon.cs" />
     <Compile Include="Models\pokemonModels\PokemonSpecies.cs" />
     <Compile Include="Models\pokemonModels\Professor.cs" />
     <Compile Include="Models\pokemonModels\Trainer.cs" />

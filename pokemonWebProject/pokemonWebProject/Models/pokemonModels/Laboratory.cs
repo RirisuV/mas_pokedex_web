@@ -16,7 +16,5 @@ namespace pokemonWebProject.Models.pokemonModels
 
         public string localisationName { get; set; }
 
-
-
     }
 }
