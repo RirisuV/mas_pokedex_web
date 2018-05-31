@@ -23,5 +23,7 @@ namespace pokemonWebProject.Models.pokemonModels
         [MaxLength(50)]
         public DateTime dateOfBirth { get; set; }
 
+        [Required]
+        public int money { get; set; }
     }
 }
