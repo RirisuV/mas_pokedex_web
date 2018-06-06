@@ -207,7 +207,8 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\pokemonModels\Ability.cs" />
     <Compile Include="Models\pokemonModels\BaseStats.cs" />
-    <Compile Include="Models\pokemonModels\Laboratory.cs" />
+    <Compile Include="Models\pokemonModels\inBox.cs" />
+    <Compile Include="Models\pokemonModels\inTeam.cs" />
     <Compile Include="Models\pokemonModels\Localisation.cs" />
     <Compile Include="Models\pokemonModels\Move.cs" />
     <Compile Include="Models\pokemonModels\Person.cs" />

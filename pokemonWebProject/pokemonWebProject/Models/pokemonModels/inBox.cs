@@ -5,7 +5,7 @@ using System.Web;
 
 namespace pokemonWebProject.Models.pokemonModels
 {
-    public class inTeam : Pokemon
+    public class inBox : Pokemon
     {
 
 
