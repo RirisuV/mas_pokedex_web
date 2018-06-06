@@ -16,5 +16,7 @@ namespace pokemonWebProject.Models.pokemonModels
 
         public double Experience { get; set; }
 
+        public int Happiness { get; set; }
+
     }
 }

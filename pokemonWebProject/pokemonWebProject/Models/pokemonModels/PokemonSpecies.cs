@@ -8,16 +8,13 @@ namespace pokemonWebProject.Models.pokemonModels
     public class PokemonSpecies
     {
 
-
         public int pokemonSpeciesID { get; set; }
 
         public int number { get; set; }
 
         public string name { get; set; }
 
-        public string descriptionNo1 { get; set; }
-
-        public string descriptionNo2 { get; set; }
+        public string description { get; set; }
 
         public string genre { get; set; }
 
