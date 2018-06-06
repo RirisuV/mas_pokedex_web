@@ -5,10 +5,9 @@ using System.Web;
 
 namespace pokemonWebProject.Models.pokemonModels
 {
-    public class Catched : Pokemon
+    public class Traded : Pokemon
     {
 
-        public string catchedLocation { get; set; }
 
 
     }

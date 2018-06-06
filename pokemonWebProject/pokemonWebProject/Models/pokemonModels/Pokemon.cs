@@ -8,7 +8,13 @@ namespace pokemonWebProject.Models.pokemonModels
     public class Pokemon : PokemonSpecies
     {
 
-        
+        public string Nickname { get; set; }
+
+        public string Gender { get; set; }
+
+        public int Level { get; set; }
+
+        public double Experience { get; set; }
 
     }
 }
