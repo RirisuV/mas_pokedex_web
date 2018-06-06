@@ -206,6 +206,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\pokemonModels\Ability.cs" />
+    <Compile Include="Models\pokemonModels\Badge.cs" />
     <Compile Include="Models\pokemonModels\BaseStats.cs" />
     <Compile Include="Models\pokemonModels\Catched.cs" />
     <Compile Include="Models\pokemonModels\inBox.cs" />
