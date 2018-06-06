@@ -24,6 +24,6 @@ namespace pokemonWebProject.Models.pokemonModels
         public DateTime dateOfBirth { get; set; }
 
         [Required]
-        public int money { get; set; }
+        public decimal money { get; set; }
     }
 }

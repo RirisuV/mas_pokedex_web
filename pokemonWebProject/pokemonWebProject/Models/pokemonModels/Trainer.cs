@@ -12,7 +12,7 @@ namespace pokemonWebProject.Models.pokemonModels
 
         public int dexCompleteAmount { get; set; }
 
-        public int allowance { get; set; }
+        public decimal allowance { get; set; }
 
     }
 
