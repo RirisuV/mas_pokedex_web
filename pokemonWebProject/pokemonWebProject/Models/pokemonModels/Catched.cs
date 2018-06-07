@@ -10,6 +10,7 @@ namespace pokemonWebProject.Models.pokemonModels
 
         public string catchedLocation { get; set; }
 
+        public string usedBall { get; set; }
 
     }
 }
