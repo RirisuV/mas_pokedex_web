@@ -5,14 +5,12 @@ using System.Web;
 
 namespace pokemonWebProject.Models.pokemonModels
 {
-    public class Badge
+    public class Type
     {
 
-        public int badgeID { get; set; }
+        public int typeID { get; set; }
 
         public string name { get; set; }
-
-        public string type { get; set; }
 
     }
 }

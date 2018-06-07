@@ -8,14 +8,13 @@ namespace pokemonWebProject.Models.pokemonModels
     public class Move
     {
 
-        public int MoveID { get; set; }
-
+        public int moveID { get; set; }
 
         public string name { get; set; }
 
         public string description { get; set; }
 
-        public int moveDamage { get; set; }
+        public int damageValue { get; set; }
 
     }
 }
