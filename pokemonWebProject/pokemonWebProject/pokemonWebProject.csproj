@@ -213,7 +213,6 @@
     <Compile Include="Models\pokemonModels\Gifted.cs" />
     <Compile Include="Models\pokemonModels\Item.cs" />
     <Compile Include="Models\pokemonModels\License.cs" />
-    <Compile Include="Models\pokemonModels\Localisation.cs" />
     <Compile Include="Models\pokemonModels\Move.cs" />
     <Compile Include="Models\pokemonModels\Person.cs" />
     <Compile Include="Models\pokemonModels\Pokemon.cs" />
