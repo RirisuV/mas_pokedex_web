@@ -209,6 +209,7 @@
     <Compile Include="Models\pokemonModels\Badge.cs" />
     <Compile Include="Models\pokemonModels\BaseStats.cs" />
     <Compile Include="Models\pokemonModels\Catched.cs" />
+    <Compile Include="Models\pokemonModels\Fighter.cs" />
     <Compile Include="Models\pokemonModels\Gifted.cs" />
     <Compile Include="Models\pokemonModels\License.cs" />
     <Compile Include="Models\pokemonModels\Localisation.cs" />
