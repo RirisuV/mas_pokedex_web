@@ -20,5 +20,19 @@ namespace pokemonWebProject.Models.pokemonModels
 
         public byte[] image { get; set; }
 
+        // STATS
+
+        public int hpStat { get; set; }
+
+        public int attackStat { get; set; }
+
+        public int defenseStat { get; set; }
+
+        public int specialAttackStat { get; set; }
+
+        public int specialDefenseStat { get; set; }
+
+        public int speedStat { get; set; }
+
     }
 }
