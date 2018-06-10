@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using pokemonWebProject.Models.pokemonModels;
 
 namespace pokemonWebProject.Models.pokemonModels
 {
     public class Person
     {
         [Key]
+        [Required]
         public int personID { get; set; }
 
         [Required]
@@ -25,5 +27,11 @@ namespace pokemonWebProject.Models.pokemonModels
 
         [Required]
         public decimal money { get; set; }
+
+        // one to many
+        public int currentPokemonID { get; set; }
+
+        public Pokemon currentPokemon { get; set; }
+
     }
 }
