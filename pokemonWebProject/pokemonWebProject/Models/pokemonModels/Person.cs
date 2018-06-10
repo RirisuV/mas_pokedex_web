@@ -29,9 +29,9 @@ namespace pokemonWebProject.Models.pokemonModels
         public decimal money { get; set; }
 
         // one to many
-        public int currentPokemonID { get; set; }
+        public int CurrentPokemonID { get; set; }
 
-        public Pokemon currentPokemon { get; set; }
+        public Pokemon CurrentPokemon { get; set; }
 
     }
 }

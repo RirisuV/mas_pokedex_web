@@ -19,7 +19,7 @@ namespace pokemonWebProject.Models.pokemonModels
         public int happiness { get; set; }
 
         // many to one
-        public ICollection<Person> pokemons { get; set; }
+        public ICollection<Person> Pokemons { get; set; }
 
     }
 }
