@@ -14,5 +14,13 @@ namespace pokemonWebProject.Models.pokemonModels
 
         public string description { get; set; }
 
+        public bool isHidden { get; set; }
+
+        // many to one
+        public int CurrentPokemonSpeciesID { get; set; }
+        public PokemonSpecies CurrentPokemonSpecies { get; set; }
+
+        public ICollection<Pokemon> Pokemons { get; set; }
+
     }
 }

@@ -5,12 +5,10 @@ using System.Web;
 
 namespace pokemonWebProject.Models.pokemonModels
 {
-    public class Catched : Acquire
+    public class Acquire
     {
 
-        public string location { get; set; }
 
-        public string usedBall { get; set; }
 
     }
 }

@@ -7,10 +7,6 @@ namespace pokemonWebProject.Models.pokemonModels
 {
     public class Fighter : Pokemon
     {
-        public Fighter()
-        {
-            this.Items = new HashSet<Item>();
-        }
 
         public int hpEvTrained { get; set; }
 
@@ -24,8 +20,9 @@ namespace pokemonWebProject.Models.pokemonModels
 
         public int speedEvTrained { get; set; }
 
-        // many to many
-        public virtual ICollection<Item> Items { get; set; }
+        // one to many
+        public int CurrentHeldItemID { get; set; }
+        public HeldItems CurrentHeldItem { get; set; }
 
     }
 }

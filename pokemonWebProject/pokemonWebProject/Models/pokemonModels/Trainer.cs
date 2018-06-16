@@ -5,13 +5,8 @@ using System.Web;
 
 namespace pokemonWebProject.Models.pokemonModels
 {
-    public class Trainer : Person
+    public class Trainer
     {
-
-        public Trainer()
-        {
-            this.Badges = new HashSet<Badge>();
-        }
 
         public int catchedPokemonsAmount { get; set; }
 
@@ -20,8 +15,11 @@ namespace pokemonWebProject.Models.pokemonModels
         public decimal allowance { get; set; }
 
         // many to many
-        public virtual ICollection<Badge> Badges { get; set; }
+        public ICollection<Challenge> Challenges { get; set; }
 
+        // one to one
+        public License CurrentLicense { get; set; }
+        public int CurrentLicenseID { get; set; }
     }
 
 }

@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace pokemonWebProject.Models.pokemonModels
 {
-    public class Gifted : Acquire
+    interface IOffensive
     {
 
-        public string objections { get; set; }
+
 
     }
 }

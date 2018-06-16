@@ -8,6 +8,11 @@ namespace pokemonWebProject.Models.pokemonModels
     public class Pokemon : PokemonSpecies
     {
 
+        public Pokemon()
+        {
+            this.Moves = new HashSet<Move>();
+        }
+
         public string nickname { get; set; }
 
         public string gender { get; set; }
@@ -19,7 +24,13 @@ namespace pokemonWebProject.Models.pokemonModels
         public int happiness { get; set; }
 
         // many to one
-        public ICollection<Person> Pokemons { get; set; }
+        public int CurrentPersonID { get; set; }
+        public Person CurrentPerson { get; set; }
 
+        public int CurrentAbilityID { get; set; }
+        public Ability CurrentAbility { get; set; }
+
+        // many to many
+        public virtual ICollection<Move> Moves { get; set; }
     }
 }

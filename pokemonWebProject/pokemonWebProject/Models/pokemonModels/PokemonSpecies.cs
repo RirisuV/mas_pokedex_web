@@ -8,6 +8,12 @@ namespace pokemonWebProject.Models.pokemonModels
     public class PokemonSpecies
     {
 
+        public PokemonSpecies()
+        {
+            this.Moves = new HashSet<Move>();
+            this.Types = new HashSet<Type>();
+        }
+
         public int pokemonSpeciesID { get; set; }
 
         public int number { get; set; }
@@ -20,19 +26,16 @@ namespace pokemonWebProject.Models.pokemonModels
 
         public byte[] image { get; set; }
 
-        // STATS
+        // one to one
+        public int CurrentBaseStatsID { get; set; }
+        public BaseStats CurrentBaseStats { get; set; }
 
-        public int hpStat { get; set; }
+        // one to many
+        public Ability Abilities { get; set; }
 
-        public int attackStat { get; set; }
-
-        public int defenseStat { get; set; }
-
-        public int specialAttackStat { get; set; }
-
-        public int specialDefenseStat { get; set; }
-
-        public int speedStat { get; set; }
+        // many to many
+        public virtual ICollection<Move> Moves { get; set; }
+        public virtual ICollection<Type> Types { get; set; }
 
     }
 }
