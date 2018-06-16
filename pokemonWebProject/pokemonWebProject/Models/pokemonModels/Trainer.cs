@@ -18,8 +18,7 @@ namespace pokemonWebProject.Models.pokemonModels
         public ICollection<Challenge> Challenges { get; set; }
 
         // one to one
-        public License CurrentLicense { get; set; }
-        public int CurrentLicenseID { get; set; }
+        public License License { get; set; }
     }
 
 }

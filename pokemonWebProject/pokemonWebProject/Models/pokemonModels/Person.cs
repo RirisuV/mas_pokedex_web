@@ -10,22 +10,14 @@ namespace pokemonWebProject.Models.pokemonModels
     public class Person
     {
         [Key]
-        [Required]
         public int personID { get; set; }
 
-        [Required]
-        [MaxLength(50)]
         public String firstName { get; set; }
 
-        [Required]
-        [MaxLength(50)]
         public String secondName { get; set; }
 
-        [Required]
-        [MaxLength(50)]
         public DateTime dateOfBirth { get; set; }
 
-        [Required]
         public decimal money { get; set; }
 
         // one to many

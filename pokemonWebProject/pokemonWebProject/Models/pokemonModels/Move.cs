@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -14,6 +15,7 @@ namespace pokemonWebProject.Models.pokemonModels
             this.Pokemons = new HashSet<Pokemon>();
         }
 
+        [Key]
         public int moveID { get; set; }
 
         public string name { get; set; }

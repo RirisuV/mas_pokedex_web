@@ -40,8 +40,78 @@ namespace pokemonWebProject.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            /* ONE TO ONE */
+            // Trainer-License
+            modelBuilder.Entity<Trainer>()
+                .HasRequired(s => s.License) 
+                .WithRequiredPrincipal(ad => ad.Trainer);
 
 
+            /* ONE TO MANY */
+            // Person-Pokemon
+            modelBuilder.Entity<Pokemon>()
+                .HasRequired<Person>(s => s.CurrentPerson)
+                .WithMany(g => g.Pokemons)
+                .HasForeignKey<int>(s => s.CurrentPersonID);
+
+            // Leader-Challenge
+            modelBuilder.Entity<Challenge>()
+                .HasRequired<Leader>(s => s.CurrentLeader)
+                .WithMany(g => g.Challenges)
+                .HasForeignKey<int>(s => s.CurrentLeaderID);
+
+            // Trainer-Challenge
+            modelBuilder.Entity<Challenge>()
+                .HasRequired<Trainer>(s => s.CurrentTrainer)
+                .WithMany(g => g.Challenges)
+                .HasForeignKey<int>(s => s.CurrentTrainerID);
+
+            // Ability-Pokemon
+            modelBuilder.Entity<Pokemon>()
+                .HasRequired<Ability>(s => s.CurrentAbility)
+                .WithMany(g => g.Pokemons)
+                .HasForeignKey<int>(s => s.CurrentAbilityID);
+
+            // HeldItem-Fighter
+            modelBuilder.Entity<Fighter>()
+                .HasRequired<HeldItem>(s => s.CurrentHeldItem)
+                .WithMany(g => g.Fighters)
+                .HasForeignKey<int>(s => s.CurrentHeldItemID);
+
+
+            /* MANY TO MANY */
+            // Pokemon-Move
+            modelBuilder.Entity<Pokemon>()
+                .HasMany<Move>(s => s.Moves)
+                .WithMany(c => c.Pokemons)
+                .Map(cs =>
+                    {
+                        cs.MapLeftKey("PokemonRefId");
+                        cs.MapRightKey("MoveRefId");
+                        cs.ToTable("PokemonMove");
+                    });
+
+            // PokemonSpecies-PokeType
+            modelBuilder.Entity<PokemonSpecies>()
+               .HasMany<PokeType>(s => s.Types)
+               .WithMany(c => c.PokemonSpecieses)
+               .Map(cs =>
+               {
+                   cs.MapLeftKey("PokemonSpeciesRefId");
+                   cs.MapRightKey("TypeRefId");
+                   cs.ToTable("PokemonspeciesMove");
+               });
+
+            // PokemonSpecies-Ability
+            modelBuilder.Entity<PokemonSpecies>()
+               .HasMany<Ability>(s => s.Abilities)
+               .WithMany(c => c.PokemonSpecieses)
+               .Map(cs =>
+               {
+                   cs.MapLeftKey("PokemonSpeciesRefId");
+                   cs.MapRightKey("AbilityRefId");
+                   cs.ToTable("PokemonspeciesAbility");
+               });
 
         }
 
