@@ -29,7 +29,7 @@ namespace pokemonWebProject.DAL
         public DbSet<License> Licenses { get; set; }
         public DbSet<Move> Moves { get; set; }
         public DbSet<Offensive> Offensives { get; set; }
-        public DbSet<OffensiveStatus> GetOffensiveStatuses { get; set; }
+        public DbSet<OffensiveStatus> OffensiveStatuses { get; set; }
         public DbSet<Person> People { get; set; }
         public DbSet<Pokemon> Pokemons { get; set; }
         public DbSet<PokemonSpecies> PokemonSpecieses { get; set; }
