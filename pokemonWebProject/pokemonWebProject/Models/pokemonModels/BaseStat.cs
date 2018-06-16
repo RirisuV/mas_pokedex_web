@@ -5,7 +5,7 @@ using System.Web;
 
 namespace pokemonWebProject.Models.pokemonModels
 {
-    public class BaseStats
+    public class BaseStat
     {
 
         public int baseStatsID { get; set; }

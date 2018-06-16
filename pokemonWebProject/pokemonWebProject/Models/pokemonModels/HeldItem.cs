@@ -5,7 +5,7 @@ using System.Web;
 
 namespace pokemonWebProject.Models.pokemonModels
 {
-    public class HeldItems : Item
+    public class HeldItem : Item
     {
 
         public bool canDrop { get; set; }

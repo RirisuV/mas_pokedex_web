@@ -5,12 +5,12 @@ using System.Web;
 
 namespace pokemonWebProject.Models.pokemonModels
 {
-    public class Type
+    public class PokeType
     {
 
-        public Type()
+        public PokeType()
         {
-            this.PokemonSpeciess = new HashSet<PokemonSpecies>();
+            this.PokemonSpecieses = new HashSet<PokemonSpecies>();
         }
 
         public int typeID { get; set; }
@@ -18,7 +18,7 @@ namespace pokemonWebProject.Models.pokemonModels
         public string name { get; set; }
 
         // many to many
-        public virtual ICollection<PokemonSpecies> PokemonSpeciess { get; set; }
+        public virtual ICollection<PokemonSpecies> PokemonSpecieses { get; set; }
 
 
     }

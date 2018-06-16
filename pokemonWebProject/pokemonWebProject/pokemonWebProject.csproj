@@ -199,6 +199,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DAL\IdentityDbContext.cs" />
+    <Compile Include="DAL\PokemonDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -207,7 +209,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\pokemonModels\Ability.cs" />
     <Compile Include="Models\pokemonModels\Acquire.cs" />
-    <Compile Include="Models\pokemonModels\BaseStats.cs" />
+    <Compile Include="Models\pokemonModels\BaseStat.cs" />
     <Compile Include="Models\pokemonModels\Catched.cs" />
     <Compile Include="Models\pokemonModels\Challenge.cs" />
     <Compile Include="Models\pokemonModels\Contester.cs" />
@@ -227,7 +229,7 @@
     <Compile Include="Models\pokemonModels\Professor.cs" />
     <Compile Include="Models\pokemonModels\Status.cs" />
     <Compile Include="Models\pokemonModels\Trainer.cs" />
-    <Compile Include="Models\pokemonModels\Type.cs" />
+    <Compile Include="Models\pokemonModels\PokeType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

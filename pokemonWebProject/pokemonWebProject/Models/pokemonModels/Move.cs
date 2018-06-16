@@ -10,7 +10,7 @@ namespace pokemonWebProject.Models.pokemonModels
 
         public Move()
         {
-            this.PokemonSpeciess = new HashSet<PokemonSpecies>();
+            this.PokemonSpecieses = new HashSet<PokemonSpecies>();
             this.Pokemons = new HashSet<Pokemon>();
         }
 
@@ -23,7 +23,7 @@ namespace pokemonWebProject.Models.pokemonModels
         public int damageValue { get; set; }
 
         // many to many
-        public virtual ICollection<PokemonSpecies> PokemonSpeciess { get; set; }
+        public virtual ICollection<PokemonSpecies> PokemonSpecieses { get; set; }
         public virtual ICollection<Pokemon> Pokemons { get; set; }
 
     }

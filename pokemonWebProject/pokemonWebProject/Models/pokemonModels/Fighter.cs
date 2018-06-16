@@ -22,7 +22,7 @@ namespace pokemonWebProject.Models.pokemonModels
 
         // one to many
         public int CurrentHeldItemID { get; set; }
-        public HeldItems CurrentHeldItem { get; set; }
+        public HeldItem CurrentHeldItem { get; set; }
 
     }
 }
