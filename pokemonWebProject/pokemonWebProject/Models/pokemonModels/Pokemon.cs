@@ -45,6 +45,15 @@ namespace pokemonWebProject.Models.pokemonModels
         [ForeignKey("PokemonSpecies")]
         public int PokemonSpeciesID { get; set; }
 
+        public Fighter Fighter { get; set; }
+        [ForeignKey("Fighter")]
+        public int FighterID { get; set; }
+
+        public Contester Contester { get; set; }
+        [ForeignKey("Contester")]
+        public int ContesterID { get; set; }
+
+
         private Pokemon(PokemonSpecies PokemonSpecies, int pokemonID, string nickname, 
             string gender, int level, double experience, int happiness)
         {
