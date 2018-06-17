@@ -28,8 +28,8 @@ namespace pokemonWebProject.Models.pokemonModels
         public string genre { get; set; }
 
         // one to one
-        public int CurrentBaseStatsID { get; set; }
-        public BaseStat CurrentBaseStats { get; set; }
+        public int BaseStatsID { get; set; }
+        public BaseStat BaseStats { get; set; }
 
         // many to many
         public virtual ICollection<Move> SpeciesMoves { get; set; }

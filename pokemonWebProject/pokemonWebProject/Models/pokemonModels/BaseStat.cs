@@ -25,8 +25,8 @@ namespace pokemonWebProject.Models.pokemonModels
         public int speedStat { get; set; }
 
         // one to one
-        public int CurrenPokemonSpeciesID { get; set; }
-        public PokemonSpecies CurrentPokemonSpecies { get; set; }
+        public int PokemonSpeciesID { get; set; }
+        public PokemonSpecies PokemonSpecies { get; set; }
 
         // one to many
 

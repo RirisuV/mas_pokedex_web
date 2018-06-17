@@ -4,6 +4,7 @@ using pokemonWebProject.Models.pokemonModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 
@@ -51,6 +52,11 @@ namespace pokemonWebProject.DAL
                 .HasRequired(s => s.License)
                 .WithRequiredPrincipal(ad => ad.Trainer);
 
+            // PokemonSpecies-BaseStat
+            modelBuilder.Entity<PokemonSpecies>()
+                .HasRequired(s => s.BaseStats)
+                .WithRequiredPrincipal(ad => ad.PokemonSpecies);
+
 
             /* ONE TO MANY */
             // Person-Pokemon
@@ -63,13 +69,15 @@ namespace pokemonWebProject.DAL
             modelBuilder.Entity<Challenge>()
                 .HasRequired<Leader>(s => s.CurrentLeader)
                 .WithMany(g => g.Challenges)
-                .HasForeignKey<int>(s => s.CurrentLeaderID);
+                .HasForeignKey<int>(s => s.CurrentLeaderID)
+                .WillCascadeOnDelete(false);
 
             // Trainer-Challenge
             modelBuilder.Entity<Challenge>()
                 .HasRequired<Trainer>(s => s.CurrentTrainer)
                 .WithMany(g => g.Challenges)
-                .HasForeignKey<int>(s => s.CurrentTrainerID);
+                .HasForeignKey<int>(s => s.CurrentTrainerID)
+                .WillCascadeOnDelete(false);
 
             // Ability-Pokemon
             modelBuilder.Entity<Pokemon>()
@@ -104,7 +112,7 @@ namespace pokemonWebProject.DAL
                {
                    cs.MapLeftKey("PokemonSpeciesRefId");
                    cs.MapRightKey("TypeRefId");
-                   cs.ToTable("PokemonspeciesMove");
+                   cs.ToTable("PokemonspeciesType");
                });
 
             // PokemonSpecies-Ability
@@ -132,9 +140,13 @@ namespace pokemonWebProject.DAL
             /* KOMPOZYCJA */
             // PokemonSpecies-Pokemon
             modelBuilder.Entity<Pokemon>()
-                .HasRequired<PokemonSpecies>(s => s.CurrentPokemonSpecies)
+                .HasRequired<PokemonSpecies>(s => s.PokemonSpecies)
                 .WithMany(g => g.Pokemons)
-                .HasForeignKey<int>(s => s.CurrentPokemonSpeciesID);
+                .HasForeignKey<int>(s => s.PokemonSpeciesID);
+
+
+            modelBuilder.Entity<IdentityUserRole>().HasKey(s => new { s.RoleId, s.UserId });
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(s => s.UserId);
 
         }
 

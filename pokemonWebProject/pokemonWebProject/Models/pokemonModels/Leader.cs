@@ -5,7 +5,7 @@ using System.Web;
 
 namespace pokemonWebProject.Models.pokemonModels
 {
-    public class Leader
+    public class Leader : Person
     {
 
         public string specialisation { get; set; }
