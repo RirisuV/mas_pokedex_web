@@ -7,7 +7,7 @@ using System.Web;
 
 namespace pokemonWebProject.Models.pokemonModels
 {
-    public class Pokemon : PokemonSpecies
+    public class Pokemon 
     {
 
         public Pokemon()
