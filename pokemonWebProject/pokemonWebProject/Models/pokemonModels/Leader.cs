@@ -27,16 +27,10 @@ namespace pokemonWebProject.Models.pokemonModels
         public Person Person { get; set; }
         public int PersonID { get; set; }
 
-        // functions
-        public Pokemon getLeadPokemon()
-        {
+        // dynamic
+        
 
-            return null;
-        }
 
-        public void giveBadgeToTrainer(Trainer trainer)
-        {
 
-        }
     }
 }

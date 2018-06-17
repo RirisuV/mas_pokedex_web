@@ -3,7 +3,7 @@ namespace pokemonWebProject.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Ini : DbMigration
+    public partial class ini : DbMigration
     {
         public override void Up()
         {
@@ -22,7 +22,7 @@ namespace pokemonWebProject.Migrations
                 "dbo.Pokemons",
                 c => new
                     {
-                        pokemonID = c.Int(nullable: false, identity: true),
+                        PokemonID = c.Int(nullable: false, identity: true),
                         nickname = c.String(),
                         gender = c.String(),
                         level = c.Int(nullable: false),
@@ -31,7 +31,7 @@ namespace pokemonWebProject.Migrations
                         CurrentPersonID = c.Int(nullable: false),
                         CurrentAbilityID = c.Int(nullable: false),
                         PokemonSpeciesID = c.Int(nullable: false),
-                        FighterID = c.Int(),
+                        FighterID = c.Int(nullable: false),
                         ContesterID = c.Int(nullable: false),
                         AcquireID = c.Int(nullable: false),
                         hpEvTrained = c.Int(),
@@ -42,19 +42,19 @@ namespace pokemonWebProject.Migrations
                         speedEvTrained = c.Int(),
                         CurrentHeldItemID = c.Int(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
-                        Pokemon_pokemonID = c.Int(),
+                        Pokemon_PokemonID = c.Int(),
                     })
-                .PrimaryKey(t => t.pokemonID)
+                .PrimaryKey(t => t.PokemonID)
                 .ForeignKey("dbo.Abilities", t => t.CurrentAbilityID, cascadeDelete: true)
                 .ForeignKey("dbo.People", t => t.CurrentPersonID, cascadeDelete: true)
                 .ForeignKey("dbo.Items", t => t.CurrentHeldItemID, cascadeDelete: true)
-                .ForeignKey("dbo.Pokemons", t => t.Pokemon_pokemonID)
+                .ForeignKey("dbo.Pokemons", t => t.Pokemon_PokemonID)
                 .ForeignKey("dbo.PokemonSpecies", t => t.PokemonSpeciesID, cascadeDelete: true)
                 .Index(t => t.CurrentPersonID)
                 .Index(t => t.CurrentAbilityID)
                 .Index(t => t.PokemonSpeciesID)
                 .Index(t => t.CurrentHeldItemID)
-                .Index(t => t.Pokemon_pokemonID);
+                .Index(t => t.Pokemon_PokemonID);
             
             CreateTable(
                 "dbo.Acquires",
@@ -365,7 +365,7 @@ namespace pokemonWebProject.Migrations
             DropForeignKey("dbo.Pokemons", "PokemonSpeciesID", "dbo.PokemonSpecies");
             DropForeignKey("dbo.PokemonMove", "MoveRefId", "dbo.Moves");
             DropForeignKey("dbo.PokemonMove", "PokemonRefId", "dbo.Pokemons");
-            DropForeignKey("dbo.Pokemons", "Pokemon_pokemonID", "dbo.Pokemons");
+            DropForeignKey("dbo.Pokemons", "Pokemon_PokemonID", "dbo.Pokemons");
             DropForeignKey("dbo.PokemonspeciesType", "TypeRefId", "dbo.PokeTypes");
             DropForeignKey("dbo.PokemonspeciesType", "PokemonSpeciesRefId", "dbo.PokemonSpecies");
             DropForeignKey("dbo.PokemonspeciesMove", "MoveRefId", "dbo.Moves");
@@ -405,7 +405,7 @@ namespace pokemonWebProject.Migrations
             DropIndex("dbo.Leaders", new[] { "leaderID" });
             DropIndex("dbo.Contesters", new[] { "contesterID" });
             DropIndex("dbo.Acquires", new[] { "acquireID" });
-            DropIndex("dbo.Pokemons", new[] { "Pokemon_pokemonID" });
+            DropIndex("dbo.Pokemons", new[] { "Pokemon_PokemonID" });
             DropIndex("dbo.Pokemons", new[] { "CurrentHeldItemID" });
             DropIndex("dbo.Pokemons", new[] { "PokemonSpeciesID" });
             DropIndex("dbo.Pokemons", new[] { "CurrentAbilityID" });

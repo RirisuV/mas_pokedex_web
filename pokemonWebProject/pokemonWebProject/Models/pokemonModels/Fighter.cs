@@ -10,7 +10,7 @@ namespace pokemonWebProject.Models.pokemonModels
     public class Fighter : Pokemon
     {
 
-        public int fighterID { get; set; }
+        public int FighterID { get; set; }
 
         public int hpEvTrained { get; set; }
 

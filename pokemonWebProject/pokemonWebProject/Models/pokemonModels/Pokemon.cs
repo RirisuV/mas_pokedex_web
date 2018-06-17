@@ -16,7 +16,7 @@ namespace pokemonWebProject.Models.pokemonModels
         }
 
         [Key]
-        public int pokemonID { get; set; }
+        public int PokemonID { get; set; }
 
         public string nickname { get; set; }
 
@@ -47,7 +47,7 @@ namespace pokemonWebProject.Models.pokemonModels
         public int PokemonSpeciesID { get; set; }
 
         public Fighter Fighter { get; set; }
-        public int? FighterID { get; set; }
+        public int FighterID { get; set; }
 
         public Contester Contester { get; set; }
         public int ContesterID { get; set; }
@@ -56,10 +56,10 @@ namespace pokemonWebProject.Models.pokemonModels
         public int AcquireID { get; set; }
 
 
-        private Pokemon(PokemonSpecies PokemonSpecies, int pokemonID, string nickname, 
+        private Pokemon(PokemonSpecies PokemonSpecies, int PokemonID, string nickname, 
             string gender, int level, double experience, int happiness)
         {
-            this.pokemonID = pokemonID;
+            this.PokemonID = PokemonID;
             this.nickname = nickname;
             this.gender = gender;
             this.level = level;
@@ -69,7 +69,7 @@ namespace pokemonWebProject.Models.pokemonModels
 
         }
 
-        public static Pokemon createPart(PokemonSpecies PokemonSpecies, int pokemonID, string nickname,
+        public static Pokemon createPart(PokemonSpecies PokemonSpecies, int PokemonID, string nickname,
             string gender, int level, double experience, int happiness)
         {
             if(PokemonSpecies == null)
@@ -77,7 +77,7 @@ namespace pokemonWebProject.Models.pokemonModels
                 throw new Exception("Pokemon Species doesn't exist");
             }
 
-            Pokemon pkmn = new Pokemon(PokemonSpecies, pokemonID, nickname, gender, level, experience, happiness);
+            Pokemon pkmn = new Pokemon(PokemonSpecies, PokemonID, nickname, gender, level, experience, happiness);
             PokemonSpecies.addPart(pkmn);
 
             return pkmn;
