@@ -110,6 +110,17 @@ namespace pokemonWebProject.DAL
                    cs.ToTable("PokemonspeciesAbility");
                });
 
+            // PokemonSpecies-Moves
+            modelBuilder.Entity<PokemonSpecies>()
+               .HasMany<Move>(s => s.SpeciesMoves)
+               .WithMany(c => c.PokemonSpecieses)
+               .Map(cs =>
+               {
+                   cs.MapLeftKey("PokemonSpeciesRefId");
+                   cs.MapRightKey("MoveRefId");
+                   cs.ToTable("PokemonspeciesMove");
+               });
+
         }
 
     }

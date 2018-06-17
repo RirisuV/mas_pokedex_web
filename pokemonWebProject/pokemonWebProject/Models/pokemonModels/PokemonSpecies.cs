@@ -38,5 +38,7 @@ namespace pokemonWebProject.Models.pokemonModels
         public virtual ICollection<PokeType> Types { get; set; }
         public virtual ICollection<Ability> Abilities { get; set; }
 
+        // kompozycja
+
     }
 }
