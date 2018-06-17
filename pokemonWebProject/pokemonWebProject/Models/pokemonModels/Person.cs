@@ -27,15 +27,15 @@ namespace pokemonWebProject.Models.pokemonModels
         // kompozycja
         public Trainer Trainer { get; set; }
         [ForeignKey("Trainer")]
-        public int TrainerID { get; set; }
+        public int? TrainerID { get; set; }
 
         public Trainer Leader { get; set; }
         [ForeignKey("Leader")]
-        public int LeaderID { get; set; }
+        public int? LeaderID { get; set; }
 
         public Trainer Professor { get; set; }
         [ForeignKey("Professor")]
-        public int ProfessorID { get; set; }
+        public int? ProfessorID { get; set; }
 
 
     }

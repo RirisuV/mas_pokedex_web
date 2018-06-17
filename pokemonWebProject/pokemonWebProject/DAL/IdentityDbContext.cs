@@ -145,24 +145,24 @@ namespace pokemonWebProject.DAL
                 .HasForeignKey<int>(s => s.PokemonSpeciesID);
 
             modelBuilder.Entity<Pokemon>()
-                .HasRequired(s => s.Fighter)
-                .WithRequiredPrincipal(ad => ad.Pokemon);
+                .HasOptional(s => s.Fighter)
+                .WithRequired(ad => ad.Pokemon);
 
             modelBuilder.Entity<Pokemon>()
-                .HasRequired(s => s.Contester)
-                .WithRequiredPrincipal(ad => ad.Pokemon);
+                .HasOptional(s => s.Contester)
+                .WithRequired(ad => ad.Pokemon);
 
             modelBuilder.Entity<Person>()
-                .HasRequired(s => s.Trainer)
-                .WithOptional(ad => ad.Person);
+                .HasOptional(s => s.Trainer)
+                .WithRequired(ad => ad.Person);
 
             modelBuilder.Entity<Person>()
-                .HasRequired(s => s.Leader)
-                .WithOptional(ad => ad.Person);
+                .HasOptional(s => s.Leader)
+                .WithRequired(ad => ad.Person);
 
             modelBuilder.Entity<Person>()
-                .HasRequired(s => s.Professor)
-                .WithOptional(ad => ad.Person);
+                .HasOptional(s => s.Professor)
+                .WithRequired(ad => ad.Person);
 
 
 
