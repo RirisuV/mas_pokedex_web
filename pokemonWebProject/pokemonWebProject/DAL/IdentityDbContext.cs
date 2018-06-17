@@ -138,12 +138,18 @@ namespace pokemonWebProject.DAL
                });
 
             /* KOMPOZYCJA */
-            // PokemonSpecies-Pokemon
+            // one to many - SPECIES-POKEMON
             modelBuilder.Entity<Pokemon>()
                 .HasRequired<PokemonSpecies>(s => s.PokemonSpecies)
                 .WithMany(g => g.Pokemons)
                 .HasForeignKey<int>(s => s.PokemonSpeciesID);
 
+            // one to one - POKEMON-ACQUIRE
+            modelBuilder.Entity<Pokemon>()
+               .HasRequired(s => s.Acquire)
+               .WithRequiredPrincipal(ad => ad.Pokemon);
+
+            // one to zero/one - POKEMON
             modelBuilder.Entity<Pokemon>()
                 .HasOptional(s => s.Fighter)
                 .WithRequired(ad => ad.Pokemon);
@@ -152,6 +158,7 @@ namespace pokemonWebProject.DAL
                 .HasOptional(s => s.Contester)
                 .WithRequired(ad => ad.Pokemon);
 
+            // one to zero/one - PERSON
             modelBuilder.Entity<Person>()
                 .HasOptional(s => s.Trainer)
                 .WithRequired(ad => ad.Person);
@@ -163,8 +170,6 @@ namespace pokemonWebProject.DAL
             modelBuilder.Entity<Person>()
                 .HasOptional(s => s.Professor)
                 .WithRequired(ad => ad.Person);
-
-
 
 
             modelBuilder.Entity<IdentityUserRole>().HasKey(s => new { s.RoleId, s.UserId });

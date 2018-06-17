@@ -26,6 +26,7 @@ namespace pokemonWebProject.Models.pokemonModels
         public License License { get; set; }
 
         // kompozycja
+        [Required]
         public Person Person { get; set; }
         public int PersonID { get; set; }
 

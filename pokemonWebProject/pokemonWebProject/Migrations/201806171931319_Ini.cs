@@ -31,8 +31,9 @@ namespace pokemonWebProject.Migrations
                         CurrentPersonID = c.Int(nullable: false),
                         CurrentAbilityID = c.Int(nullable: false),
                         PokemonSpeciesID = c.Int(nullable: false),
-                        FighterID = c.Int(nullable: false),
+                        FighterID = c.Int(),
                         ContesterID = c.Int(nullable: false),
+                        AcquireID = c.Int(nullable: false),
                         hpEvTrained = c.Int(),
                         attackEvTrained = c.Int(),
                         defenseEvTrained = c.Int(),
@@ -54,6 +55,21 @@ namespace pokemonWebProject.Migrations
                 .Index(t => t.PokemonSpeciesID)
                 .Index(t => t.CurrentHeldItemID)
                 .Index(t => t.Pokemon_pokemonID);
+            
+            CreateTable(
+                "dbo.Acquires",
+                c => new
+                    {
+                        acquireID = c.Int(nullable: false),
+                        PokemonID = c.Int(nullable: false),
+                        location = c.String(),
+                        usedBall = c.String(),
+                        objections = c.String(),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => t.acquireID)
+                .ForeignKey("dbo.Pokemons", t => t.acquireID)
+                .Index(t => t.acquireID);
             
             CreateTable(
                 "dbo.Contesters",
@@ -217,18 +233,6 @@ namespace pokemonWebProject.Migrations
                 .PrimaryKey(t => t.typeID);
             
             CreateTable(
-                "dbo.Acquires",
-                c => new
-                    {
-                        acquireID = c.Int(nullable: false, identity: true),
-                        location = c.String(),
-                        usedBall = c.String(),
-                        objections = c.String(),
-                        Discriminator = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => t.acquireID);
-            
-            CreateTable(
                 "dbo.IdentityRoles",
                 c => new
                     {
@@ -379,6 +383,7 @@ namespace pokemonWebProject.Migrations
             DropForeignKey("dbo.Challenges", "CurrentLeaderID", "dbo.Leaders");
             DropForeignKey("dbo.Pokemons", "CurrentAbilityID", "dbo.Abilities");
             DropForeignKey("dbo.Contesters", "contesterID", "dbo.Pokemons");
+            DropForeignKey("dbo.Acquires", "acquireID", "dbo.Pokemons");
             DropIndex("dbo.PokemonMove", new[] { "MoveRefId" });
             DropIndex("dbo.PokemonMove", new[] { "PokemonRefId" });
             DropIndex("dbo.PokemonspeciesType", new[] { "TypeRefId" });
@@ -399,6 +404,7 @@ namespace pokemonWebProject.Migrations
             DropIndex("dbo.Challenges", new[] { "CurrentLeaderID" });
             DropIndex("dbo.Leaders", new[] { "leaderID" });
             DropIndex("dbo.Contesters", new[] { "contesterID" });
+            DropIndex("dbo.Acquires", new[] { "acquireID" });
             DropIndex("dbo.Pokemons", new[] { "Pokemon_pokemonID" });
             DropIndex("dbo.Pokemons", new[] { "CurrentHeldItemID" });
             DropIndex("dbo.Pokemons", new[] { "PokemonSpeciesID" });
@@ -413,7 +419,6 @@ namespace pokemonWebProject.Migrations
             DropTable("dbo.ApplicationUsers");
             DropTable("dbo.IdentityUserRoles");
             DropTable("dbo.IdentityRoles");
-            DropTable("dbo.Acquires");
             DropTable("dbo.PokeTypes");
             DropTable("dbo.BaseStats");
             DropTable("dbo.PokemonSpecies");
@@ -426,6 +431,7 @@ namespace pokemonWebProject.Migrations
             DropTable("dbo.Leaders");
             DropTable("dbo.People");
             DropTable("dbo.Contesters");
+            DropTable("dbo.Acquires");
             DropTable("dbo.Pokemons");
             DropTable("dbo.Abilities");
         }

@@ -14,8 +14,8 @@ namespace pokemonWebProject.Models.pokemonModels
         public string specialisation { get; set; }
 
         // kompozycja
+        [Required]
         public Pokemon Pokemon { get; set; }
-        [ForeignKey("Pokemon")]
         public int PokemonID { get; set; }
 
     }
