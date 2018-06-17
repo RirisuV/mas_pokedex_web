@@ -17,15 +17,15 @@ namespace pokemonWebProject.Models.pokemonModels
         }
 
         [Key]
-        public int pokemonSpeciesID { get; set; }
+        public int PokemonSpeciesID { get; set; }
 
-        public int number { get; set; }
+        public int Number { get; set; }
 
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        public string description { get; set; }
+        public string Description { get; set; }
 
-        public string genre { get; set; }
+        public string Genre { get; set; }
 
         // one to one
         public int BaseStatsID { get; set; }

@@ -10,7 +10,7 @@ namespace pokemonWebProject.Models.pokemonModels
     {
 
         [Key]
-        public int acquireID { get; set; }
+        public int AcquireID { get; set; }
 
         // kompozycja
         [Required]

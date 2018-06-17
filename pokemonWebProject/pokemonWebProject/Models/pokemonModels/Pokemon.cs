@@ -18,15 +18,15 @@ namespace pokemonWebProject.Models.pokemonModels
         [Key]
         public int PokemonID { get; set; }
 
-        public string nickname { get; set; }
+        public string Nickname { get; set; }
 
-        public string gender { get; set; }
+        public string Gender { get; set; }
 
-        public int level { get; set; }
+        public int Level { get; set; }
 
-        public double experience { get; set; }
+        public double Experience { get; set; }
 
-        public int happiness { get; set; }
+        public int Happiness { get; set; }
 
 
         // many to one

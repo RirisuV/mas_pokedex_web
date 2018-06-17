@@ -11,13 +11,13 @@ namespace pokemonWebProject.Models.pokemonModels
     {
 
         [Key]
-        public int trainerID { get; set; }
+        public int TrainerID { get; set; }
 
-        public int catchedPokemonsAmount { get; set; }
+        public int CatchedPokemonsAmount { get; set; }
 
-        public int dexCompleteAmount { get; set; }
+        public int DexCompleteAmount { get; set; }
 
-        public decimal allowance { get; set; }
+        public decimal Allowance { get; set; }
 
         // many to many
         public ICollection<Challenge> Challenges { get; set; }

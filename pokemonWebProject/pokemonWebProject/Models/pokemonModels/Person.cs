@@ -11,15 +11,15 @@ namespace pokemonWebProject.Models.pokemonModels
     public class Person
     {
         [Key]
-        public int personID { get; set; }
+        public int PersonID { get; set; }
 
-        public String firstName { get; set; }
+        public String FirstName { get; set; }
 
-        public String secondName { get; set; }
+        public String SecondName { get; set; }
 
-        public DateTime dateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
-        public decimal money { get; set; }
+        public decimal Money { get; set; }
 
         // one to many
         public ICollection<Pokemon> Pokemons { get; set; }

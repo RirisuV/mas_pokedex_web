@@ -12,17 +12,17 @@ namespace pokemonWebProject.Models.pokemonModels
 
         public int FighterID { get; set; }
 
-        public int hpEvTrained { get; set; }
+        public int HpEvTrained { get; set; }
 
-        public int attackEvTrained { get; set; }
+        public int AttackEvTrained { get; set; }
 
-        public int defenseEvTrained { get; set; }
+        public int DefenseEvTrained { get; set; }
 
-        public int specialAttackEvTrained { get; set; }
+        public int SpecialAttackEvTrained { get; set; }
 
-        public int specialDefenseEvTrained { get; set; }
+        public int SpecialDefenseEvTrained { get; set; }
 
-        public int speedEvTrained { get; set; }
+        public int SpeedEvTrained { get; set; }
 
         // one to many
         public int CurrentHeldItemID { get; set; }

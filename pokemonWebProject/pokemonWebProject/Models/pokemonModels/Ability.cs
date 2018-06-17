@@ -15,13 +15,13 @@ namespace pokemonWebProject.Models.pokemonModels
         }
 
         [Key]
-        public int abilityID { get; set; }
+        public int AbilityID { get; set; }
 
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        public string description { get; set; }
+        public string Description { get; set; }
 
-        public bool isHidden { get; set; }
+        public bool IsHidden { get; set; }
 
         // many to many
         public virtual ICollection<PokemonSpecies> PokemonSpecieses { get; set; }

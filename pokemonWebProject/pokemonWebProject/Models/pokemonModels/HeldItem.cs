@@ -8,7 +8,7 @@ namespace pokemonWebProject.Models.pokemonModels
     public class HeldItem : Item
     {
 
-        public bool canDrop { get; set; }
+        public bool CanDrop { get; set; }
 
         // many to one
         public ICollection<Fighter> Fighters { get; set; }

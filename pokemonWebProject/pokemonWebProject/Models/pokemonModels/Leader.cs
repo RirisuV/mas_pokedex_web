@@ -10,13 +10,13 @@ namespace pokemonWebProject.Models.pokemonModels
     public class Leader
     {
         [Key]
-        public int leaderID { get; set; }
+        public int LeaderID { get; set; }
 
-        public string specialisation { get; set; }
+        public string Specialisation { get; set; }
 
-        public string secondJob { get; set; }
+        public string SecondJob { get; set; }
 
-        public decimal sallary { get; set; }
+        public decimal Sallary { get; set; }
 
 
         // one to many

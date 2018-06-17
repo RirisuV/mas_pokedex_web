@@ -10,19 +10,19 @@ namespace pokemonWebProject.Models.pokemonModels
     {
 
         [Key]
-        public int baseStatsID { get; set; }
+        public int BaseStatsID { get; set; }
 
-        public int hpStat { get; set; }
+        public int HpStat { get; set; }
 
-        public int attackStat { get; set; }
+        public int AttackStat { get; set; }
 
-        public int defenseStat { get; set; }
+        public int DefenseStat { get; set; }
 
-        public int specialAttackStat { get; set; }
+        public int SpecialAttackStat { get; set; }
 
-        public int specialDefenseStat { get; set; }
+        public int SpecialDefenseStat { get; set; }
 
-        public int speedStat { get; set; }
+        public int SpeedStat { get; set; }
 
         // one to one
         public int PokemonSpeciesID { get; set; }

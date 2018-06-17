@@ -10,19 +10,19 @@ namespace pokemonWebProject.Models.pokemonModels
     {
 
         [Key]
-        public int challengeID { get; set; }
+        public int ChallengeID { get; set; }
 
-        public DateTime challengeDate { get; set; }
+        public DateTime ChallengeDate { get; set; }
 
-        public string description { get; set; }
+        public string Description { get; set; }
 
-        public string result { get; set; }
+        public string Result { get; set; }
 
-        public bool isAccepted { get; set; }
+        public bool AsAccepted { get; set; }
 
-        public string declineReasonTopic { get; set; }
+        public string DeclineReasonTopic { get; set; }
 
-        public string declineReasonDescription { get; set; }
+        public string DeclineReasonDescription { get; set; }
 
         // many to one
         public Leader CurrentLeader { get; set; }

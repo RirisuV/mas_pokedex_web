@@ -8,7 +8,7 @@ namespace pokemonWebProject.Models.pokemonModels
     public class Gifted : Acquire
     {
 
-        public string objections { get; set; }
+        public string Objections { get; set; }
 
     }
 }

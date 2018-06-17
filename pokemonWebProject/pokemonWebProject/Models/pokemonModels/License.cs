@@ -10,9 +10,9 @@ namespace pokemonWebProject.Models.pokemonModels
     {
 
         [Key]
-        public int licenseID { get; set; }
+        public int LicenseID { get; set; }
 
-        public decimal licenseCost { get; set; }
+        public decimal LicenseCost { get; set; }
 
         // one to one
         public Trainer Trainer { get; set; }

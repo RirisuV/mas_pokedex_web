@@ -10,9 +10,9 @@ namespace pokemonWebProject.Models.pokemonModels
     public class Contester
     {
 
-        public int contesterID { get; set; }
+        public int ContesterID { get; set; }
 
-        public string specialisation { get; set; }
+        public string Specialisation { get; set; }
 
         // kompozycja
         [Required]

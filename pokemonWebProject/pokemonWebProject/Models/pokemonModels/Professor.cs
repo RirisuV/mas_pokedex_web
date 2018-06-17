@@ -10,13 +10,13 @@ namespace pokemonWebProject.Models.pokemonModels
     public class Professor
     {
         [Key]
-        public int professorID { get; set; }
+        public int ProfessorID { get; set; }
 
-        public string specialisation { get; set; }
+        public string Specialisation { get; set; }
 
-        public int holdedPokemonAmount { get; set; }
+        public int HoldedPokemonAmount { get; set; }
 
-        public decimal sallary { get; set; }
+        public decimal Sallary { get; set; }
 
 
         // kompozycja

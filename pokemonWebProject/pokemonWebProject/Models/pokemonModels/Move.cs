@@ -16,13 +16,13 @@ namespace pokemonWebProject.Models.pokemonModels
         }
 
         [Key]
-        public int moveID { get; set; }
+        public int MoveID { get; set; }
 
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        public string description { get; set; }
+        public string Description { get; set; }
 
-        public int damageValue { get; set; }
+        public int DamageValue { get; set; }
 
         // many to many
         public virtual ICollection<PokemonSpecies> PokemonSpecieses { get; set; }

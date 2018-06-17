@@ -8,9 +8,9 @@ namespace pokemonWebProject.Models.pokemonModels
     public class Catched : Acquire
     {
 
-        public string location { get; set; }
+        public string Location { get; set; }
 
-        public string usedBall { get; set; }
+        public string UsedBall { get; set; }
 
     }
 }

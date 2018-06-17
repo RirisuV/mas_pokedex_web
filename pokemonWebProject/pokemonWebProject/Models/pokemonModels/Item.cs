@@ -10,11 +10,11 @@ namespace pokemonWebProject.Models.pokemonModels
     {
 
         [Key]
-        public int itemID { get; set; }
+        public int ItemID { get; set; }
 
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        public string effect { get; set; }
+        public string Effect { get; set; }
 
     }
 }

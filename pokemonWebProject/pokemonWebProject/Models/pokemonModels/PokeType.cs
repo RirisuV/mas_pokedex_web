@@ -15,9 +15,9 @@ namespace pokemonWebProject.Models.pokemonModels
         }
 
         [Key]
-        public int typeID { get; set; }
+        public int TypeID { get; set; }
 
-        public string name { get; set; }
+        public string Name { get; set; }
 
         // many to many
         public virtual ICollection<PokemonSpecies> PokemonSpecieses { get; set; }
