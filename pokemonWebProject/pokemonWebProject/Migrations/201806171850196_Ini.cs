@@ -3,7 +3,7 @@ namespace pokemonWebProject.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class Ini : DbMigration
     {
         public override void Up()
         {
@@ -31,7 +31,8 @@ namespace pokemonWebProject.Migrations
                         CurrentPersonID = c.Int(nullable: false),
                         CurrentAbilityID = c.Int(nullable: false),
                         PokemonSpeciesID = c.Int(nullable: false),
-                        specialisation = c.String(),
+                        FighterID = c.Int(nullable: false),
+                        ContesterID = c.Int(nullable: false),
                         hpEvTrained = c.Int(),
                         attackEvTrained = c.Int(),
                         defenseEvTrained = c.Int(),
@@ -40,16 +41,31 @@ namespace pokemonWebProject.Migrations
                         speedEvTrained = c.Int(),
                         CurrentHeldItemID = c.Int(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
+                        Pokemon_pokemonID = c.Int(),
                     })
                 .PrimaryKey(t => t.pokemonID)
                 .ForeignKey("dbo.Abilities", t => t.CurrentAbilityID, cascadeDelete: true)
                 .ForeignKey("dbo.People", t => t.CurrentPersonID, cascadeDelete: true)
-                .ForeignKey("dbo.PokemonSpecies", t => t.PokemonSpeciesID, cascadeDelete: true)
                 .ForeignKey("dbo.Items", t => t.CurrentHeldItemID, cascadeDelete: true)
+                .ForeignKey("dbo.Pokemons", t => t.Pokemon_pokemonID)
+                .ForeignKey("dbo.PokemonSpecies", t => t.PokemonSpeciesID, cascadeDelete: true)
                 .Index(t => t.CurrentPersonID)
                 .Index(t => t.CurrentAbilityID)
                 .Index(t => t.PokemonSpeciesID)
-                .Index(t => t.CurrentHeldItemID);
+                .Index(t => t.CurrentHeldItemID)
+                .Index(t => t.Pokemon_pokemonID);
+            
+            CreateTable(
+                "dbo.Contesters",
+                c => new
+                    {
+                        contesterID = c.Int(nullable: false),
+                        specialisation = c.String(),
+                        PokemonID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.contesterID)
+                .ForeignKey("dbo.Pokemons", t => t.contesterID)
+                .Index(t => t.contesterID);
             
             CreateTable(
                 "dbo.People",
@@ -60,18 +76,25 @@ namespace pokemonWebProject.Migrations
                         secondName = c.String(),
                         dateOfBirth = c.DateTime(nullable: false),
                         money = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        specialisation = c.String(),
-                        secondJob = c.String(),
-                        sallary = c.Decimal(precision: 18, scale: 2),
-                        catchedPokemonsAmount = c.Int(),
-                        dexCompleteAmount = c.Int(),
-                        allowance = c.Decimal(precision: 18, scale: 2),
-                        specialisation1 = c.String(),
-                        holdedPokemonAmount = c.Int(),
-                        sallary1 = c.Decimal(precision: 18, scale: 2),
-                        Discriminator = c.String(nullable: false, maxLength: 128),
+                        TrainerID = c.Int(),
+                        LeaderID = c.Int(),
+                        ProfessorID = c.Int(),
                     })
                 .PrimaryKey(t => t.personID);
+            
+            CreateTable(
+                "dbo.Leaders",
+                c => new
+                    {
+                        leaderID = c.Int(nullable: false),
+                        specialisation = c.String(),
+                        secondJob = c.String(),
+                        sallary = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        PersonID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.leaderID)
+                .ForeignKey("dbo.People", t => t.leaderID)
+                .Index(t => t.leaderID);
             
             CreateTable(
                 "dbo.Challenges",
@@ -88,10 +111,24 @@ namespace pokemonWebProject.Migrations
                         CurrentTrainerID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.challengeID)
-                .ForeignKey("dbo.People", t => t.CurrentLeaderID)
-                .ForeignKey("dbo.People", t => t.CurrentTrainerID)
+                .ForeignKey("dbo.Leaders", t => t.CurrentLeaderID)
+                .ForeignKey("dbo.Trainers", t => t.CurrentTrainerID)
                 .Index(t => t.CurrentLeaderID)
                 .Index(t => t.CurrentTrainerID);
+            
+            CreateTable(
+                "dbo.Trainers",
+                c => new
+                    {
+                        trainerID = c.Int(nullable: false),
+                        catchedPokemonsAmount = c.Int(nullable: false),
+                        dexCompleteAmount = c.Int(nullable: false),
+                        allowance = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        PersonID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.trainerID)
+                .ForeignKey("dbo.People", t => t.trainerID)
+                .Index(t => t.trainerID);
             
             CreateTable(
                 "dbo.Licenses",
@@ -101,8 +138,33 @@ namespace pokemonWebProject.Migrations
                         licenseCost = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.licenseID)
-                .ForeignKey("dbo.People", t => t.licenseID)
+                .ForeignKey("dbo.Trainers", t => t.licenseID)
                 .Index(t => t.licenseID);
+            
+            CreateTable(
+                "dbo.Professors",
+                c => new
+                    {
+                        professorID = c.Int(nullable: false),
+                        specialisation = c.String(),
+                        holdedPokemonAmount = c.Int(nullable: false),
+                        sallary = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        PersonID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.professorID)
+                .ForeignKey("dbo.People", t => t.professorID)
+                .Index(t => t.professorID);
+            
+            CreateTable(
+                "dbo.Items",
+                c => new
+                    {
+                        itemID = c.Int(nullable: false, identity: true),
+                        name = c.String(),
+                        effect = c.String(),
+                        canDrop = c.Boolean(),
+                    })
+                .PrimaryKey(t => t.itemID);
             
             CreateTable(
                 "dbo.Moves",
@@ -153,17 +215,6 @@ namespace pokemonWebProject.Migrations
                         name = c.String(),
                     })
                 .PrimaryKey(t => t.typeID);
-            
-            CreateTable(
-                "dbo.Items",
-                c => new
-                    {
-                        itemID = c.Int(nullable: false, identity: true),
-                        name = c.String(),
-                        effect = c.String(),
-                        canDrop = c.Boolean(),
-                    })
-                .PrimaryKey(t => t.itemID);
             
             CreateTable(
                 "dbo.Acquires",
@@ -307,10 +358,10 @@ namespace pokemonWebProject.Migrations
             DropForeignKey("dbo.IdentityUserLogins", "ApplicationUser_Id", "dbo.ApplicationUsers");
             DropForeignKey("dbo.IdentityUserClaims", "ApplicationUser_Id", "dbo.ApplicationUsers");
             DropForeignKey("dbo.IdentityUserRoles", "IdentityRole_Id", "dbo.IdentityRoles");
-            DropForeignKey("dbo.Pokemons", "CurrentHeldItemID", "dbo.Items");
             DropForeignKey("dbo.Pokemons", "PokemonSpeciesID", "dbo.PokemonSpecies");
             DropForeignKey("dbo.PokemonMove", "MoveRefId", "dbo.Moves");
             DropForeignKey("dbo.PokemonMove", "PokemonRefId", "dbo.Pokemons");
+            DropForeignKey("dbo.Pokemons", "Pokemon_pokemonID", "dbo.Pokemons");
             DropForeignKey("dbo.PokemonspeciesType", "TypeRefId", "dbo.PokeTypes");
             DropForeignKey("dbo.PokemonspeciesType", "PokemonSpeciesRefId", "dbo.PokemonSpecies");
             DropForeignKey("dbo.PokemonspeciesMove", "MoveRefId", "dbo.Moves");
@@ -318,11 +369,16 @@ namespace pokemonWebProject.Migrations
             DropForeignKey("dbo.BaseStats", "baseStatsID", "dbo.PokemonSpecies");
             DropForeignKey("dbo.PokemonspeciesAbility", "AbilityRefId", "dbo.Abilities");
             DropForeignKey("dbo.PokemonspeciesAbility", "PokemonSpeciesRefId", "dbo.PokemonSpecies");
+            DropForeignKey("dbo.Pokemons", "CurrentHeldItemID", "dbo.Items");
             DropForeignKey("dbo.Pokemons", "CurrentPersonID", "dbo.People");
-            DropForeignKey("dbo.Challenges", "CurrentTrainerID", "dbo.People");
-            DropForeignKey("dbo.Licenses", "licenseID", "dbo.People");
-            DropForeignKey("dbo.Challenges", "CurrentLeaderID", "dbo.People");
+            DropForeignKey("dbo.Trainers", "trainerID", "dbo.People");
+            DropForeignKey("dbo.Professors", "professorID", "dbo.People");
+            DropForeignKey("dbo.Leaders", "leaderID", "dbo.People");
+            DropForeignKey("dbo.Challenges", "CurrentTrainerID", "dbo.Trainers");
+            DropForeignKey("dbo.Licenses", "licenseID", "dbo.Trainers");
+            DropForeignKey("dbo.Challenges", "CurrentLeaderID", "dbo.Leaders");
             DropForeignKey("dbo.Pokemons", "CurrentAbilityID", "dbo.Abilities");
+            DropForeignKey("dbo.Contesters", "contesterID", "dbo.Pokemons");
             DropIndex("dbo.PokemonMove", new[] { "MoveRefId" });
             DropIndex("dbo.PokemonMove", new[] { "PokemonRefId" });
             DropIndex("dbo.PokemonspeciesType", new[] { "TypeRefId" });
@@ -336,9 +392,14 @@ namespace pokemonWebProject.Migrations
             DropIndex("dbo.IdentityUserRoles", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRoles", new[] { "IdentityRole_Id" });
             DropIndex("dbo.BaseStats", new[] { "baseStatsID" });
+            DropIndex("dbo.Professors", new[] { "professorID" });
             DropIndex("dbo.Licenses", new[] { "licenseID" });
+            DropIndex("dbo.Trainers", new[] { "trainerID" });
             DropIndex("dbo.Challenges", new[] { "CurrentTrainerID" });
             DropIndex("dbo.Challenges", new[] { "CurrentLeaderID" });
+            DropIndex("dbo.Leaders", new[] { "leaderID" });
+            DropIndex("dbo.Contesters", new[] { "contesterID" });
+            DropIndex("dbo.Pokemons", new[] { "Pokemon_pokemonID" });
             DropIndex("dbo.Pokemons", new[] { "CurrentHeldItemID" });
             DropIndex("dbo.Pokemons", new[] { "PokemonSpeciesID" });
             DropIndex("dbo.Pokemons", new[] { "CurrentAbilityID" });
@@ -353,14 +414,18 @@ namespace pokemonWebProject.Migrations
             DropTable("dbo.IdentityUserRoles");
             DropTable("dbo.IdentityRoles");
             DropTable("dbo.Acquires");
-            DropTable("dbo.Items");
             DropTable("dbo.PokeTypes");
             DropTable("dbo.BaseStats");
             DropTable("dbo.PokemonSpecies");
             DropTable("dbo.Moves");
+            DropTable("dbo.Items");
+            DropTable("dbo.Professors");
             DropTable("dbo.Licenses");
+            DropTable("dbo.Trainers");
             DropTable("dbo.Challenges");
+            DropTable("dbo.Leaders");
             DropTable("dbo.People");
+            DropTable("dbo.Contesters");
             DropTable("dbo.Pokemons");
             DropTable("dbo.Abilities");
         }

@@ -27,8 +27,7 @@ namespace pokemonWebProject.Models.pokemonModels
 
         // kompozycja
         public Person Person { get; set; }
-        [ForeignKey("Person")]
-        public int? PersonID { get; set; }
+        public int PersonID { get; set; }
 
         // functions
 

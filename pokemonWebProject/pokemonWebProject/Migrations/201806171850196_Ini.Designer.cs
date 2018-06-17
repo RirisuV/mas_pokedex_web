@@ -7,13 +7,13 @@ namespace pokemonWebProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class Ini : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Ini));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806171400186_Initial"; }
+            get { return "201806171850196_Ini"; }
         }
         
         string IMigrationMetadata.Source
