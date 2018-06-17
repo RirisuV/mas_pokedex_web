@@ -19,6 +19,16 @@ namespace pokemonWebProject.Models.pokemonModels
 
         // one to one
         public License License { get; set; }
+
+
+
+        // functions
+
+        public int getBadgesAmount()
+        {
+            return 0;
+        }
+
     }
 
 }

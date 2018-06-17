@@ -18,5 +18,19 @@ namespace pokemonWebProject.Models.pokemonModels
         // one to many
         public ICollection<Challenge> Challenges { get; set; }
 
+
+
+        // functions
+
+        public Pokemon getLeadPokemon()
+        {
+
+            return null;
+        }
+
+        public void giveBadgeToTrainer(Trainer trainer)
+        {
+
+        }
     }
 }

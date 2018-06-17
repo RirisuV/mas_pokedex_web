@@ -27,18 +27,37 @@ namespace pokemonWebProject.Models.pokemonModels
 
         public string genre { get; set; }
 
-        public byte[] image { get; set; }
-
         // one to one
         public int CurrentBaseStatsID { get; set; }
         public BaseStat CurrentBaseStats { get; set; }
 
         // many to many
         public virtual ICollection<Move> SpeciesMoves { get; set; }
+
         public virtual ICollection<PokeType> Types { get; set; }
+
         public virtual ICollection<Ability> Abilities { get; set; }
 
         // kompozycja
+        public virtual ICollection<Pokemon> Pokemons { get; set; }
+
+
+        public PokemonSpecies(int pokemonSpeciesID, int number, string name, string description, string genre)
+        {
+            this.pokemonSpeciesID = pokemonSpeciesID;
+            this.number = number;
+            this.name = name;
+            this.description = description;
+            this.genre = genre;
+        }
+
+        public void addPart(Pokemon pokemon)
+        {
+            if (!Pokemons.Contains(pokemon))
+            {
+                Pokemons.Add(pokemon);
+            }
+        }
 
     }
 }
