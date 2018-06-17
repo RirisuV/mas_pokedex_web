@@ -11,7 +11,7 @@ namespace pokemonWebProject.DAL
     {
 
         public IdentityDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DefaultConnection")
         {
 
         }

@@ -28,13 +28,10 @@ namespace pokemonWebProject.DAL
         public DbSet<Leader> Leaders { get; set; }
         public DbSet<License> Licenses { get; set; }
         public DbSet<Move> Moves { get; set; }
-        public DbSet<Offensive> Offensives { get; set; }
-        public DbSet<OffensiveStatus> OffensiveStatuses { get; set; }
         public DbSet<Person> People { get; set; }
         public DbSet<Pokemon> Pokemons { get; set; }
         public DbSet<PokemonSpecies> PokemonSpecieses { get; set; }
         public DbSet<Professor> Processors { get; set; }
-        public DbSet<Status> Statuses { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<PokeType> Types { get; set; }
 
@@ -85,11 +82,11 @@ namespace pokemonWebProject.DAL
                 .HasMany<Move>(s => s.Moves)
                 .WithMany(c => c.Pokemons)
                 .Map(cs =>
-                    {
-                        cs.MapLeftKey("PokemonRefId");
-                        cs.MapRightKey("MoveRefId");
-                        cs.ToTable("PokemonMove");
-                    });
+                {
+                    cs.MapLeftKey("PokemonRefId");
+                    cs.MapRightKey("MoveRefId");
+                    cs.ToTable("PokemonMove");
+                });
 
             // PokemonSpecies-PokeType
             modelBuilder.Entity<PokemonSpecies>()

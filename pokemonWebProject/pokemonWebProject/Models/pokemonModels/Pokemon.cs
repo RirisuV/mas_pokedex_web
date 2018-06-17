@@ -39,5 +39,10 @@ namespace pokemonWebProject.Models.pokemonModels
 
         // many to many
         public virtual ICollection<Move> Moves { get; set; }
+
+        // kompozycja
+
+
+
     }
 }
