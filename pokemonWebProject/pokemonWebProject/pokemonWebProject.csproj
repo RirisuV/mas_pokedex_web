@@ -197,10 +197,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChallengesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeadersController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
+    <Compile Include="Controllers\ProfessorsController.cs" />
+    <Compile Include="Controllers\TrainersController.cs" />
     <Compile Include="DAL\IdentityDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -308,6 +311,21 @@
     <Content Include="Views\Leaders\Details.cshtml" />
     <Content Include="Views\Leaders\Edit.cshtml" />
     <Content Include="Views\Leaders\Index.cshtml" />
+    <Content Include="Views\Professors\Create.cshtml" />
+    <Content Include="Views\Professors\Delete.cshtml" />
+    <Content Include="Views\Professors\Details.cshtml" />
+    <Content Include="Views\Professors\Edit.cshtml" />
+    <Content Include="Views\Professors\Index.cshtml" />
+    <Content Include="Views\Trainers\Create.cshtml" />
+    <Content Include="Views\Trainers\Delete.cshtml" />
+    <Content Include="Views\Trainers\Details.cshtml" />
+    <Content Include="Views\Trainers\Edit.cshtml" />
+    <Content Include="Views\Trainers\Index.cshtml" />
+    <Content Include="Views\Challenges\Create.cshtml" />
+    <Content Include="Views\Challenges\Delete.cshtml" />
+    <Content Include="Views\Challenges\Details.cshtml" />
+    <Content Include="Views\Challenges\Edit.cshtml" />
+    <Content Include="Views\Challenges\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

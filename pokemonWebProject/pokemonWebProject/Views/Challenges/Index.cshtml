@@ -1,0 +1,75 @@
+﻿@model IEnumerable<pokemonWebProject.Models.pokemonModels.Challenge>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentLeader.Specialisation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentTrainer.TrainerID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChallengeDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Result)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AsAccepted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeclineReasonTopic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeclineReasonDescription)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrentLeader.Specialisation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrentTrainer.TrainerID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChallengeDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Result)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AsAccepted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeclineReasonTopic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeclineReasonDescription)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ChallengeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ChallengeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ChallengeID })
+        </td>
+    </tr>
+}
+
+</table>

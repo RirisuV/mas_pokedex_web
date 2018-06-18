@@ -1,4 +1,4 @@
-﻿@model IEnumerable<pokemonWebProject.Models.pokemonModels.Leader>
+﻿@model IEnumerable<pokemonWebProject.Models.pokemonModels.Professor>
 
 @{
     ViewBag.Title = "Index";
@@ -18,10 +18,13 @@
             @Html.DisplayNameFor(model => model.Specialisation)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SecondJob)
+            @Html.DisplayNameFor(model => model.HoldedPokemonAmount)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Sallary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonID)
         </th>
         <th></th>
     </tr>
@@ -35,15 +38,18 @@
             @Html.DisplayFor(modelItem => item.Specialisation)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SecondJob)
+            @Html.DisplayFor(modelItem => item.HoldedPokemonAmount)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Sallary)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.LeaderID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.LeaderID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.LeaderID })
+            @Html.DisplayFor(modelItem => item.PersonID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProfessorID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProfessorID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProfessorID })
         </td>
     </tr>
 }
