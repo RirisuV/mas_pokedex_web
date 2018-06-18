@@ -3,7 +3,7 @@ namespace pokemonWebProject.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class ini : DbMigration
+    public partial class Ini : DbMigration
     {
         public override void Up()
         {
@@ -92,9 +92,6 @@ namespace pokemonWebProject.Migrations
                         SecondName = c.String(),
                         DateOfBirth = c.DateTime(nullable: false),
                         Money = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        TrainerID = c.Int(),
-                        LeaderID = c.Int(),
-                        ProfessorID = c.Int(),
                     })
                 .PrimaryKey(t => t.PersonID);
             

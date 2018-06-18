@@ -25,15 +25,11 @@ namespace pokemonWebProject.Models.pokemonModels
         public ICollection<Pokemon> Pokemons { get; set; }
 
         // kompozycja
-        public Trainer Trainer { get; set; }
-        public int? TrainerID { get; set; }
+        public virtual Trainer Trainer { get; set; }
+        
+        public virtual Leader Leader { get; set; }
 
-        public Leader Leader { get; set; }
-        public int? LeaderID { get; set; }
-
-        public Professor Professor { get; set; }
-        public int? ProfessorID { get; set; }
-
+        public virtual Professor Professor { get; set; }
 
     }
 }

@@ -31,7 +31,6 @@ namespace pokemonWebProject.Models.pokemonModels
         public int PersonID { get; set; }
 
         // functions
-
         public int getBadgesAmount()
         {
             return 0;

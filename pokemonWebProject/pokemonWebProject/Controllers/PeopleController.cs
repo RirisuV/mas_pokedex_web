@@ -51,7 +51,7 @@ namespace pokemonWebProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PersonID,FirstName,SecondName,DateOfBirth,Money,TrainerID,LeaderID,ProfessorID")] Person person)
+        public ActionResult Create([Bind(Include = "PersonID,FirstName,SecondName,DateOfBirth,Money")] Person person)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace pokemonWebProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PersonID,FirstName,SecondName,DateOfBirth,Money,TrainerID,LeaderID,ProfessorID")] Person person)
+        public ActionResult Edit([Bind(Include = "PersonID,FirstName,SecondName,DateOfBirth,Money")] Person person)
         {
             if (ModelState.IsValid)
             {

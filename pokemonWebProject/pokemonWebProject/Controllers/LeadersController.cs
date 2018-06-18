@@ -18,8 +18,7 @@ namespace pokemonWebProject.Controllers
         // GET: Leaders
         public ActionResult Index()
         {
-            var leaders = db.Leaders
-                .Include(l => l.Person);
+            var leaders = db.Leaders.Include(l => l.Person);
             return View(leaders.ToList());
         }
 
@@ -70,9 +69,7 @@ namespace pokemonWebProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             Leader leader = db.Leaders.Find(id);
-
             if (leader == null)
             {
                 return HttpNotFound();
