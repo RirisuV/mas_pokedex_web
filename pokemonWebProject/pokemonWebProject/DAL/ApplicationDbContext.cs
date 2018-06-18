@@ -38,10 +38,9 @@ namespace pokemonWebProject.DAL
         public DbSet<Leader> Leaders { get; set; }
         public DbSet<License> Licenses { get; set; }
         public DbSet<Move> Moves { get; set; }
-        public DbSet<Person> People { get; set; }
         public DbSet<Pokemon> Pokemons { get; set; }
         public DbSet<PokemonSpecies> PokemonSpecieses { get; set; }
-        public DbSet<Professor> Processors { get; set; }
+        public DbSet<Professor> Professors { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<PokeType> Types { get; set; }
 
@@ -62,7 +61,7 @@ namespace pokemonWebProject.DAL
             /* ONE TO MANY */
             // Person-Pokemon
             modelBuilder.Entity<Pokemon>()
-                .HasRequired<Person>(s => s.CurrentPerson)
+                .HasRequired<ApplicationUser>(s => s.CurrentPerson)
                 .WithMany(g => g.Pokemons)
                 .HasForeignKey<int>(s => s.CurrentPersonID);
 
@@ -160,15 +159,15 @@ namespace pokemonWebProject.DAL
                 .WithRequired(ad => ad.Pokemon);
 
             // one to zero/one - PERSON
-            modelBuilder.Entity<Person>()
+            modelBuilder.Entity<ApplicationUser>()
                 .HasOptional(s => s.Trainer)
                 .WithRequired(ad => ad.Person);
 
-            modelBuilder.Entity<Person>()
+            modelBuilder.Entity<ApplicationUser>()
                 .HasOptional(s => s.Leader)
                 .WithRequired(ad => ad.Person);
 
-            modelBuilder.Entity<Person>()
+            modelBuilder.Entity<ApplicationUser>()
                 .HasOptional(s => s.Professor)
                 .WithRequired(ad => ad.Person);
 
@@ -181,5 +180,6 @@ namespace pokemonWebProject.DAL
 
         }
 
+        //public System.Data.Entity.DbSet<pokemonWebProject.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

@@ -189,16 +189,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\PeopleController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806182014003_Ini.cs" />
-    <Compile Include="Migrations\201806182014003_Ini.Designer.cs">
-      <DependentUpon>201806182014003_Ini.cs</DependentUpon>
+    <Compile Include="Migrations\201806182040522_Ini.cs" />
+    <Compile Include="Migrations\201806182040522_Ini.Designer.cs">
+      <DependentUpon>201806182040522_Ini.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -217,7 +217,6 @@
     <Compile Include="Models\pokemonModels\Leader.cs" />
     <Compile Include="Models\pokemonModels\License.cs" />
     <Compile Include="Models\pokemonModels\Move.cs" />
-    <Compile Include="Models\pokemonModels\Person.cs" />
     <Compile Include="Models\pokemonModels\Pokemon.cs" />
     <Compile Include="Models\pokemonModels\PokemonSpecies.cs" />
     <Compile Include="Models\pokemonModels\Professor.cs" />
@@ -227,69 +226,89 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-grid.css" />
-    <Content Include="Content\bootstrap-grid.min.css" />
-    <Content Include="Content\bootstrap-reboot.css" />
-    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Arch\ContentOld\bootstrap-grid.css" />
+    <Content Include="Arch\ContentOld\bootstrap-grid.min.css" />
+    <Content Include="Arch\ContentOld\bootstrap-reboot.css" />
+    <Content Include="Arch\ContentOld\bootstrap-reboot.min.css" />
+    <Content Include="Arch\ContentOld\bootstrap.css" />
+    <Content Include="Arch\ContentOld\bootstrap.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap_new.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Arch\ContentOld\Site.css" />
     <Content Include="Notes\FillDb.txt" />
-    <Content Include="Scripts\ai.1.0.18-build01843.js" />
-    <Content Include="Scripts\ai.1.0.18-build01843.min.js" />
-    <Content Include="Scripts\bootstrap.bundle.js" />
-    <Content Include="Scripts\bootstrap.bundle.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Arch\ScriptsOld\ai.1.0.18-build01843.js" />
+    <Content Include="Arch\ScriptsOld\ai.1.0.18-build01843.min.js" />
+    <Content Include="Arch\ScriptsOld\bootstrap.bundle.js" />
+    <Content Include="Arch\ScriptsOld\bootstrap.bundle.min.js" />
+    <Content Include="Arch\ScriptsOld\bootstrap.js" />
+    <Content Include="Arch\ScriptsOld\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\esm\popper-utils.js" />
-    <Content Include="Scripts\esm\popper-utils.min.js" />
-    <Content Include="Scripts\esm\popper.js" />
-    <Content Include="Scripts\esm\popper.min.js" />
-    <Content Include="Scripts\esm\popper.min.js.map" />
-    <Content Include="Scripts\esm\popper.js.map" />
-    <Content Include="Scripts\esm\popper-utils.min.js.map" />
-    <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="Scripts\bootstrap.min.js.map" />
-    <Content Include="Scripts\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.js.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Arch\ScriptsOld\esm\popper-utils.js" />
+    <Content Include="Arch\ScriptsOld\esm\popper-utils.min.js" />
+    <Content Include="Arch\ScriptsOld\esm\popper.js" />
+    <Content Include="Arch\ScriptsOld\esm\popper.min.js" />
+    <Content Include="Arch\ScriptsOld\esm\popper.min.js.map" />
+    <Content Include="Arch\ScriptsOld\esm\popper.js.map" />
+    <Content Include="Arch\ScriptsOld\esm\popper-utils.min.js.map" />
+    <Content Include="Arch\ScriptsOld\esm\popper-utils.js.map" />
+    <Content Include="Arch\ScriptsOld\bootstrap.min.js.map" />
+    <Content Include="Arch\ScriptsOld\bootstrap.js.map" />
+    <Content Include="Arch\ScriptsOld\bootstrap.bundle.min.js.map" />
+    <Content Include="Arch\ScriptsOld\bootstrap.bundle.js.map" />
+    <Content Include="Arch\ContentOld\bootstrap.min.css.map" />
+    <Content Include="Arch\ContentOld\bootstrap.css.map" />
+    <Content Include="Arch\ContentOld\bootstrap-reboot.min.css.map" />
+    <Content Include="Arch\ContentOld\bootstrap-reboot.css.map" />
+    <Content Include="Arch\ContentOld\bootstrap-grid.min.css.map" />
+    <Content Include="Arch\ContentOld\bootstrap-grid.css.map" />
+    <None Include="Arch\ScriptsOld\jquery-1.10.2.intellisense.js" />
+    <None Include="Arch\ScriptsOld\jquery-3.3.1-vsdoc.js" />
+    <Content Include="Arch\ScriptsOld\jquery-3.3.1.js" />
+    <Content Include="Arch\ScriptsOld\jquery-3.3.1.min.js" />
+    <Content Include="Arch\ScriptsOld\jquery-3.3.1.slim.js" />
+    <Content Include="Arch\ScriptsOld\jquery-3.3.1.slim.min.js" />
+    <None Include="Arch\ScriptsOld\jquery.validate-vsdoc.js" />
+    <Content Include="Arch\ScriptsOld\jquery.validate.js" />
+    <Content Include="Arch\ScriptsOld\jquery.validate.min.js" />
+    <Content Include="Arch\ScriptsOld\jquery.validate.unobtrusive.js" />
+    <Content Include="Arch\ScriptsOld\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Arch\ScriptsOld\modernizr-2.6.2.js" />
+    <Content Include="Arch\ScriptsOld\modernizr-2.8.3.js" />
+    <Content Include="Arch\ScriptsOld\popper-utils.js" />
+    <Content Include="Arch\ScriptsOld\popper-utils.min.js" />
+    <Content Include="Arch\ScriptsOld\popper.js" />
+    <Content Include="Arch\ScriptsOld\popper.min.js" />
+    <Content Include="Arch\ScriptsOld\respond.js" />
+    <Content Include="Arch\ScriptsOld\respond.matchmedia.addListener.js" />
+    <Content Include="Arch\ScriptsOld\respond.matchmedia.addListener.min.js" />
+    <Content Include="Arch\ScriptsOld\respond.min.js" />
+    <Content Include="Arch\ScriptsOld\umd\popper-utils.js" />
+    <Content Include="Arch\ScriptsOld\umd\popper-utils.min.js" />
+    <Content Include="Arch\ScriptsOld\umd\popper.js" />
+    <Content Include="Arch\ScriptsOld\umd\popper.min.js" />
+    <Content Include="Arch\ScriptsOld\_references.js" />
+    <Content Include="Scripts\ai.0.22.19-build00125.js" />
+    <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <None Include="Scripts\jquery-3.3.1-vsdoc.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\popper-utils.js" />
-    <Content Include="Scripts\popper-utils.min.js" />
-    <Content Include="Scripts\popper.js" />
-    <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\umd\popper-utils.js" />
-    <Content Include="Scripts\umd\popper-utils.min.js" />
-    <Content Include="Scripts\umd\popper.js" />
-    <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Scripts\_references.js" />
+    <None Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -326,22 +345,24 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
-    <Content Include="Scripts\umd\popper.min.js.map" />
-    <Content Include="Scripts\umd\popper.js.map" />
-    <Content Include="Scripts\umd\popper-utils.min.js.map" />
-    <Content Include="Scripts\umd\popper-utils.js.map" />
-    <Content Include="Scripts\README.md" />
-    <Content Include="Scripts\popper.min.js.map" />
-    <Content Include="Scripts\popper.js.map" />
-    <Content Include="Scripts\popper-utils.min.js.map" />
-    <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\People\Create.cshtml" />
-    <Content Include="Views\People\Delete.cshtml" />
-    <Content Include="Views\People\Details.cshtml" />
-    <Content Include="Views\People\Edit.cshtml" />
-    <Content Include="Views\People\Index.cshtml" />
+    <Content Include="Arch\ScriptsOld\jquery-3.3.1.slim.min.map" />
+    <Content Include="Arch\ScriptsOld\jquery-3.3.1.min.map" />
+    <Content Include="Arch\ScriptsOld\umd\popper.min.js.map" />
+    <Content Include="Arch\ScriptsOld\umd\popper.js.map" />
+    <Content Include="Arch\ScriptsOld\umd\popper-utils.min.js.map" />
+    <Content Include="Arch\ScriptsOld\umd\popper-utils.js.map" />
+    <Content Include="Arch\ScriptsOld\README.md" />
+    <Content Include="Arch\ScriptsOld\popper.min.js.map" />
+    <Content Include="Arch\ScriptsOld\popper.js.map" />
+    <Content Include="Arch\ScriptsOld\popper-utils.min.js.map" />
+    <Content Include="Arch\ScriptsOld\popper-utils.js.map" />
+    <Content Include="Views\ApplicationUsers\Create.cshtml" />
+    <Content Include="Views\ApplicationUsers\Delete.cshtml" />
+    <Content Include="Views\ApplicationUsers\Details.cshtml" />
+    <Content Include="Views\ApplicationUsers\Edit.cshtml" />
+    <Content Include="Views\ApplicationUsers\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Shared\MyLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -352,14 +373,14 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\index.d.ts" />
+    <TypeScriptCompile Include="Arch\ScriptsOld\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806182014003_Ini.resx">
-      <DependentUpon>201806182014003_Ini.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806182040522_Ini.resx">
+      <DependentUpon>201806182040522_Ini.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

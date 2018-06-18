@@ -37,7 +37,7 @@ namespace pokemonWebProject.Migrations
                     })
                 .PrimaryKey(t => t.PokemonID)
                 .ForeignKey("dbo.Abilities", t => t.CurrentAbilityID, cascadeDelete: true)
-                .ForeignKey("dbo.People", t => t.CurrentPersonID, cascadeDelete: true)
+                .ForeignKey("dbo.ApplicationUsers", t => t.CurrentPersonID, cascadeDelete: true)
                 .ForeignKey("dbo.PokemonSpecies", t => t.PokemonSpeciesID, cascadeDelete: true)
                 .Index(t => t.CurrentPersonID)
                 .Index(t => t.CurrentAbilityID)
@@ -71,16 +71,41 @@ namespace pokemonWebProject.Migrations
                 .Index(t => t.ContesterID);
             
             CreateTable(
-                "dbo.People",
+                "dbo.ApplicationUsers",
                 c => new
                     {
-                        PersonID = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         FirstName = c.String(),
                         SecondName = c.String(),
                         DateOfBirth = c.DateTime(nullable: false),
                         Money = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Email = c.String(),
+                        EmailConfirmed = c.Boolean(nullable: false),
+                        PasswordHash = c.String(),
+                        SecurityStamp = c.String(),
+                        PhoneNumber = c.String(),
+                        PhoneNumberConfirmed = c.Boolean(nullable: false),
+                        TwoFactorEnabled = c.Boolean(nullable: false),
+                        LockoutEndDateUtc = c.DateTime(),
+                        LockoutEnabled = c.Boolean(nullable: false),
+                        AccessFailedCount = c.Int(nullable: false),
+                        UserName = c.String(),
                     })
-                .PrimaryKey(t => t.PersonID);
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.CustomUserClaims",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        UserId = c.Int(nullable: false),
+                        ClaimType = c.String(),
+                        ClaimValue = c.String(),
+                        ApplicationUser_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
+                .Index(t => t.ApplicationUser_Id);
             
             CreateTable(
                 "dbo.Leaders",
@@ -93,7 +118,7 @@ namespace pokemonWebProject.Migrations
                         PersonID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.LeaderID)
-                .ForeignKey("dbo.People", t => t.LeaderID)
+                .ForeignKey("dbo.ApplicationUsers", t => t.LeaderID)
                 .Index(t => t.LeaderID);
             
             CreateTable(
@@ -127,7 +152,7 @@ namespace pokemonWebProject.Migrations
                         PersonID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.TrainerID)
-                .ForeignKey("dbo.People", t => t.TrainerID)
+                .ForeignKey("dbo.ApplicationUsers", t => t.TrainerID)
                 .Index(t => t.TrainerID);
             
             CreateTable(
@@ -142,6 +167,19 @@ namespace pokemonWebProject.Migrations
                 .Index(t => t.LicenseID);
             
             CreateTable(
+                "dbo.CustomUserLogins",
+                c => new
+                    {
+                        UserId = c.Int(nullable: false, identity: true),
+                        LoginProvider = c.String(),
+                        ProviderKey = c.String(),
+                        ApplicationUser_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.UserId)
+                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
+                .Index(t => t.ApplicationUser_Id);
+            
+            CreateTable(
                 "dbo.Professors",
                 c => new
                     {
@@ -152,8 +190,23 @@ namespace pokemonWebProject.Migrations
                         PersonID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ProfessorID)
-                .ForeignKey("dbo.People", t => t.ProfessorID)
+                .ForeignKey("dbo.ApplicationUsers", t => t.ProfessorID)
                 .Index(t => t.ProfessorID);
+            
+            CreateTable(
+                "dbo.CustomUserRoles",
+                c => new
+                    {
+                        UserId = c.Int(nullable: false),
+                        RoleId = c.Int(nullable: false),
+                        ApplicationUser_Id = c.Int(),
+                        CustomRole_Id = c.Int(),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
+                .ForeignKey("dbo.CustomRoles", t => t.CustomRole_Id)
+                .Index(t => t.ApplicationUser_Id)
+                .Index(t => t.CustomRole_Id);
             
             CreateTable(
                 "dbo.Fighters",
@@ -246,67 +299,6 @@ namespace pokemonWebProject.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.CustomUserRoles",
-                c => new
-                    {
-                        UserId = c.Int(nullable: false),
-                        RoleId = c.Int(nullable: false),
-                        CustomRole_Id = c.Int(),
-                        ApplicationUser_Id = c.Int(),
-                    })
-                .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("dbo.CustomRoles", t => t.CustomRole_Id)
-                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
-                .Index(t => t.CustomRole_Id)
-                .Index(t => t.ApplicationUser_Id);
-            
-            CreateTable(
-                "dbo.ApplicationUsers",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Email = c.String(),
-                        EmailConfirmed = c.Boolean(nullable: false),
-                        PasswordHash = c.String(),
-                        SecurityStamp = c.String(),
-                        PhoneNumber = c.String(),
-                        PhoneNumberConfirmed = c.Boolean(nullable: false),
-                        TwoFactorEnabled = c.Boolean(nullable: false),
-                        LockoutEndDateUtc = c.DateTime(),
-                        LockoutEnabled = c.Boolean(nullable: false),
-                        AccessFailedCount = c.Int(nullable: false),
-                        UserName = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.CustomUserClaims",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        UserId = c.Int(nullable: false),
-                        ClaimType = c.String(),
-                        ClaimValue = c.String(),
-                        ApplicationUser_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
-                .Index(t => t.ApplicationUser_Id);
-            
-            CreateTable(
-                "dbo.CustomUserLogins",
-                c => new
-                    {
-                        UserId = c.Int(nullable: false, identity: true),
-                        LoginProvider = c.String(),
-                        ProviderKey = c.String(),
-                        ApplicationUser_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.UserId)
-                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
-                .Index(t => t.ApplicationUser_Id);
-            
-            CreateTable(
                 "dbo.IdentityUserRoles",
                 c => new
                     {
@@ -381,9 +373,6 @@ namespace pokemonWebProject.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.CustomUserRoles", "ApplicationUser_Id", "dbo.ApplicationUsers");
-            DropForeignKey("dbo.CustomUserLogins", "ApplicationUser_Id", "dbo.ApplicationUsers");
-            DropForeignKey("dbo.CustomUserClaims", "ApplicationUser_Id", "dbo.ApplicationUsers");
             DropForeignKey("dbo.CustomUserRoles", "CustomRole_Id", "dbo.CustomRoles");
             DropForeignKey("dbo.Pokemons", "PokemonSpeciesID", "dbo.PokemonSpecies");
             DropForeignKey("dbo.PokemonMove", "MoveRefId", "dbo.Moves");
@@ -397,13 +386,16 @@ namespace pokemonWebProject.Migrations
             DropForeignKey("dbo.PokemonspeciesAbility", "PokemonSpeciesRefId", "dbo.PokemonSpecies");
             DropForeignKey("dbo.Fighters", "FighterID", "dbo.Pokemons");
             DropForeignKey("dbo.Fighters", "CurrentHeldItemID", "dbo.Items");
-            DropForeignKey("dbo.Pokemons", "CurrentPersonID", "dbo.People");
-            DropForeignKey("dbo.Trainers", "TrainerID", "dbo.People");
-            DropForeignKey("dbo.Professors", "ProfessorID", "dbo.People");
-            DropForeignKey("dbo.Leaders", "LeaderID", "dbo.People");
+            DropForeignKey("dbo.Pokemons", "CurrentPersonID", "dbo.ApplicationUsers");
+            DropForeignKey("dbo.Trainers", "TrainerID", "dbo.ApplicationUsers");
+            DropForeignKey("dbo.CustomUserRoles", "ApplicationUser_Id", "dbo.ApplicationUsers");
+            DropForeignKey("dbo.Professors", "ProfessorID", "dbo.ApplicationUsers");
+            DropForeignKey("dbo.CustomUserLogins", "ApplicationUser_Id", "dbo.ApplicationUsers");
+            DropForeignKey("dbo.Leaders", "LeaderID", "dbo.ApplicationUsers");
             DropForeignKey("dbo.Challenges", "CurrentTrainerID", "dbo.Trainers");
             DropForeignKey("dbo.Licenses", "LicenseID", "dbo.Trainers");
             DropForeignKey("dbo.Challenges", "CurrentLeaderID", "dbo.Leaders");
+            DropForeignKey("dbo.CustomUserClaims", "ApplicationUser_Id", "dbo.ApplicationUsers");
             DropForeignKey("dbo.Pokemons", "CurrentAbilityID", "dbo.Abilities");
             DropForeignKey("dbo.Contesters", "ContesterID", "dbo.Pokemons");
             DropForeignKey("dbo.Acquires", "AcquireID", "dbo.Pokemons");
@@ -415,19 +407,19 @@ namespace pokemonWebProject.Migrations
             DropIndex("dbo.PokemonspeciesMove", new[] { "PokemonSpeciesRefId" });
             DropIndex("dbo.PokemonspeciesAbility", new[] { "AbilityRefId" });
             DropIndex("dbo.PokemonspeciesAbility", new[] { "PokemonSpeciesRefId" });
-            DropIndex("dbo.CustomUserLogins", new[] { "ApplicationUser_Id" });
-            DropIndex("dbo.CustomUserClaims", new[] { "ApplicationUser_Id" });
-            DropIndex("dbo.CustomUserRoles", new[] { "ApplicationUser_Id" });
-            DropIndex("dbo.CustomUserRoles", new[] { "CustomRole_Id" });
             DropIndex("dbo.BaseStats", new[] { "BaseStatsID" });
             DropIndex("dbo.Fighters", new[] { "CurrentHeldItemID" });
             DropIndex("dbo.Fighters", new[] { "FighterID" });
+            DropIndex("dbo.CustomUserRoles", new[] { "CustomRole_Id" });
+            DropIndex("dbo.CustomUserRoles", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.Professors", new[] { "ProfessorID" });
+            DropIndex("dbo.CustomUserLogins", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.Licenses", new[] { "LicenseID" });
             DropIndex("dbo.Trainers", new[] { "TrainerID" });
             DropIndex("dbo.Challenges", new[] { "CurrentTrainerID" });
             DropIndex("dbo.Challenges", new[] { "CurrentLeaderID" });
             DropIndex("dbo.Leaders", new[] { "LeaderID" });
+            DropIndex("dbo.CustomUserClaims", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.Contesters", new[] { "ContesterID" });
             DropIndex("dbo.Acquires", new[] { "AcquireID" });
             DropIndex("dbo.Pokemons", new[] { "PokemonSpeciesID" });
@@ -439,10 +431,6 @@ namespace pokemonWebProject.Migrations
             DropTable("dbo.PokemonspeciesAbility");
             DropTable("dbo.IdentityUserLogins");
             DropTable("dbo.IdentityUserRoles");
-            DropTable("dbo.CustomUserLogins");
-            DropTable("dbo.CustomUserClaims");
-            DropTable("dbo.ApplicationUsers");
-            DropTable("dbo.CustomUserRoles");
             DropTable("dbo.CustomRoles");
             DropTable("dbo.PokeTypes");
             DropTable("dbo.BaseStats");
@@ -450,12 +438,15 @@ namespace pokemonWebProject.Migrations
             DropTable("dbo.Moves");
             DropTable("dbo.Items");
             DropTable("dbo.Fighters");
+            DropTable("dbo.CustomUserRoles");
             DropTable("dbo.Professors");
+            DropTable("dbo.CustomUserLogins");
             DropTable("dbo.Licenses");
             DropTable("dbo.Trainers");
             DropTable("dbo.Challenges");
             DropTable("dbo.Leaders");
-            DropTable("dbo.People");
+            DropTable("dbo.CustomUserClaims");
+            DropTable("dbo.ApplicationUsers");
             DropTable("dbo.Contesters");
             DropTable("dbo.Acquires");
             DropTable("dbo.Pokemons");

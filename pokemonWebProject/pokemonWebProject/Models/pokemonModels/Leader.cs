@@ -23,7 +23,7 @@ namespace pokemonWebProject.Models.pokemonModels
         public ICollection<Challenge> Challenges { get; set; }
 
         // kompozycja
-        public Person Person { get; set; }
+        public ApplicationUser Person { get; set; }
         public int PersonID { get; set; }
 
         // dynamic

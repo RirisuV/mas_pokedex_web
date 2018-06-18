@@ -31,7 +31,7 @@ namespace pokemonWebProject.Models.pokemonModels
 
         // many to one
         public int CurrentPersonID { get; set; }
-        public Person CurrentPerson { get; set; }
+        public ApplicationUser CurrentPerson { get; set; }
 
         public Ability CurrentAbility { get; set; }
         [ForeignKey("CurrentAbility")]

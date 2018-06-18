@@ -20,7 +20,7 @@ namespace pokemonWebProject.Models.pokemonModels
 
 
         // kompozycja
-        public Person Person { get; set; }
+        public ApplicationUser Person { get; set; }
         public int PersonID { get; set; }
 
 

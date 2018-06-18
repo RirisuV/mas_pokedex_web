@@ -13,7 +13,7 @@ namespace pokemonWebProject.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201806182014003_Ini"; }
+            get { return "201806182040522_Ini"; }
         }
         
         string IMigrationMetadata.Source
