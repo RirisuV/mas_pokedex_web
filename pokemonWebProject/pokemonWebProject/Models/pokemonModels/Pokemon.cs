@@ -56,28 +56,28 @@ namespace pokemonWebProject.Models.pokemonModels
         public int AcquireID { get; set; }
 
 
-        private Pokemon(PokemonSpecies PokemonSpecies, int PokemonID, string nickname, 
-            string gender, int level, double experience, int happiness)
+        private Pokemon(PokemonSpecies PokemonSpecies, int PokemonID, string Nickname, 
+            string Gender, int Level, double Experience, int Happiness)
         {
             this.PokemonID = PokemonID;
-            this.nickname = nickname;
-            this.gender = gender;
-            this.level = level;
-            this.experience = experience;
-            this.happiness = happiness;
+            this.Nickname = Nickname;
+            this.Gender = Gender;
+            this.Level = Level;
+            this.Experience = Experience;
+            this.Happiness = Happiness;
             this.PokemonSpecies = PokemonSpecies;
 
         }
 
-        public static Pokemon createPart(PokemonSpecies PokemonSpecies, int PokemonID, string nickname,
-            string gender, int level, double experience, int happiness)
+        public static Pokemon createPart(PokemonSpecies PokemonSpecies, int PokemonID, string Nickname,
+            string Gender, int Level, double Experience, int Happiness)
         {
             if(PokemonSpecies == null)
             {
                 throw new Exception("Pokemon Species doesn't exist");
             }
 
-            Pokemon pkmn = new Pokemon(PokemonSpecies, PokemonID, nickname, gender, level, experience, happiness);
+            Pokemon pkmn = new Pokemon(PokemonSpecies, PokemonID, Nickname, Gender, Level, Experience, Happiness);
             PokemonSpecies.addPart(pkmn);
 
             return pkmn;

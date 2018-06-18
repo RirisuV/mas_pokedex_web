@@ -42,13 +42,13 @@ namespace pokemonWebProject.Models.pokemonModels
         public virtual ICollection<Pokemon> Pokemons { get; set; }
 
 
-        public PokemonSpecies(int pokemonSpeciesID, int number, string name, string description, string genre)
+        public PokemonSpecies(int PokemonSpeciesID, int Number, string Name, string Description, string Genre)
         {
-            this.pokemonSpeciesID = pokemonSpeciesID;
-            this.number = number;
-            this.name = name;
-            this.description = description;
-            this.genre = genre;
+            this.PokemonSpeciesID = PokemonSpeciesID;
+            this.Number = Number;
+            this.Name = Name;
+            this.Description = Description;
+            this.Genre = Genre;
         }
 
         public void addPart(Pokemon pokemon)
