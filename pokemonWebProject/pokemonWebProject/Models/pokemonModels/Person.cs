@@ -10,7 +10,7 @@ namespace pokemonWebProject.Models.pokemonModels
 {
     public class Person
     {
-        [Key]
+        [Key] 
         public int PersonID { get; set; }
 
         public String FirstName { get; set; }
