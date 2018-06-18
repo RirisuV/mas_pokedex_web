@@ -1,0 +1,23 @@
+﻿SELECT * FROM People;
+SELECT * FROM Trainers;
+SELECT * FROM Professors;
+SELECT * FROM Leaders;
+
+  
+  
+INSERT INTO People (firstName, secondName, dateOfBirth, money) VALUES 
+	('Ash', 'Keczap', GETDATE(), 300),
+	('Samuel', 'Oak', GETDATE(), 12000),
+	('Brock', 'Anonym', GETDATE(), 4500),
+	('Gary', 'Oak', GETDATE(), 2500);
+	
+INSERT INTO Leaders (leaderID, specialisation, secondJob, sallary, PersonID) VALUES 
+	(1, 'Rock', 'Chief', 3500, 3);
+	
+INSERT INTO Trainers (trainerID, catchedPokemonsAmount, dexCompleteAmount, allowance, PersonID)  VALUES 
+	(1, 3, 5, 300, 2),
+	(2, 12, 55, 1000, 1),
+	(3, 61, 144, 1200, 5);
+	
+	
+
