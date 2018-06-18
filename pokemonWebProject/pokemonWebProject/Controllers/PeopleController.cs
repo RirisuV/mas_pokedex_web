@@ -13,7 +13,7 @@ namespace pokemonWebProject.Controllers
 {
     public class PeopleController : Controller
     {
-        private IdentityDbContext db = new IdentityDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: People
         public ActionResult Index()
