@@ -138,9 +138,6 @@ namespace pokemonWebProject.Controllers
                 db.Leaders.Remove(leader);
             }
 
-            db.Users.Remove(applicationUser);
-            db.SaveChanges();
-
             int currentUserId = Int32.Parse(User.Identity.GetUserId());
 
             if (currentUserId == id)
@@ -148,6 +145,9 @@ namespace pokemonWebProject.Controllers
                 AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
                 return RedirectToAction("Index", "Home");
             }
+
+            db.Users.Remove(applicationUser);
+            db.SaveChanges();
 
             return RedirectToAction("Index");
         }

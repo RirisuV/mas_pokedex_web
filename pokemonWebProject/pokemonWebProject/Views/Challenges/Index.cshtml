@@ -1,0 +1,52 @@
+﻿@model IEnumerable<pokemonWebProject.Models.pokemonModels.Challenge>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Wyzywający Trener
+        </th>
+        <th>
+            Data Pojedynku
+        </th>
+        <th>
+            Zaakceptowany?
+        </th>
+        <th>
+            Zaakceptuj/ Odrzuć
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(model => item.CurrentTrainer.Person.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChallengeDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AsAccepted)
+        </td>
+        <td>
+            @Html.ActionLink("Accept", "Accept", new { id = item.ChallengeID }) |
+            @Html.ActionLink("Decline", "Decline", new { id = item.ChallengeID })
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.ChallengeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ChallengeID })
+        </td>
+    </tr>
+}
+
+</table>

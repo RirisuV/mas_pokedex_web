@@ -42,9 +42,10 @@
             @Html.DisplayFor(modelItem => item.Sallary)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.LeaderID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.LeaderID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.LeaderID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.LeaderID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.LeaderID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.LeaderID })
+            @Html.ActionLink("Rzuć Wyzwanie", "CreateByTrainer", "Challenges", new { id = item.LeaderID }, new { area = "" })
         </td>
     </tr>
 }

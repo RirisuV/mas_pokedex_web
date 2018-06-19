@@ -138,6 +138,14 @@ namespace pokemonWebProject.Controllers
             Leader leader = db.Leaders.Find(id);
             UserManager.RemoveFromRole(leader.LeaderID, "Leader");
             db.Leaders.Remove(leader);
+
+            // Remove all challnges connected
+            var challenge = db.Challenges.Where(x => x.CurrentTrainerID == id).ToList();
+            foreach (var ch in challenge)
+            {
+                db.Challenges.Remove(ch);
+            }
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }

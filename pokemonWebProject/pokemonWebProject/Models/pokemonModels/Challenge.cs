@@ -32,4 +32,5 @@ namespace pokemonWebProject.Models.pokemonModels
         public int CurrentTrainerID { get; set; }
 
     }
+
 }

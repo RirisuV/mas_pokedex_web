@@ -56,6 +56,8 @@ namespace pokemonWebProject.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                trainer.PersonID = trainer.TrainerID;
                 db.Trainers.Add(trainer);
 
                 if (UserManager.GetRoles(trainer.TrainerID) != null)
@@ -136,6 +138,13 @@ namespace pokemonWebProject.Controllers
             Trainer trainer = db.Trainers.Find(id);
             UserManager.RemoveFromRole(trainer.TrainerID, "Trainer");
             db.Trainers.Remove(trainer);
+
+            // Remove all challnges connected
+            var challenge = db.Challenges.Where(x => x.CurrentLeaderID == id).ToList();
+            foreach (var ch in challenge)
+            {
+                db.Challenges.Remove(ch);
+            }
 
             db.SaveChanges();
             return RedirectToAction("Index");
