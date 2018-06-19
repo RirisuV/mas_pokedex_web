@@ -13,130 +13,131 @@ using pokemonWebProject.Models.pokemonModels;
 
 namespace pokemonWebProject.Controllers
 {
-    public class TrainersController : Controller
+    public class LeadersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationUserManager _userManager;
 
-        // GET: Trainers
+        // GET: Leaders
         public ActionResult Index()
         {
-            var trainers = db.Trainers.Include(t => t.Person);
-            return View(trainers.ToList());
+            var leaders = db.Leaders.Include(l => l.Person);
+            return View(leaders.ToList());
         }
 
-        // GET: Trainers/Details/5
+        // GET: Leaders/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trainer trainer = db.Trainers.Include(p => p.Person).SingleOrDefault(x => x.TrainerID == id);
-            if (trainer == null)
+
+            Leader leader = db.Leaders.Include(p => p.Person).SingleOrDefault(x => x.LeaderID == id);
+           
+            if (leader == null)
             {
                 return HttpNotFound();
             }
-            return View(trainer);
+            return View(leader);
         }
 
-        // GET: Trainers/Create
+        // GET: Leaders/Create
         public ActionResult Create()
         {
-            ViewBag.TrainerID = new SelectList(db.Users, "Id", "FirstName");
+            ViewBag.LeaderID = new SelectList(db.Users, "Id", "FirstName");
             return View();
         }
 
-        // POST: Trainers/Create
+        // POST: Leaders/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TrainerID,CatchedPokemonsAmount,DexCompleteAmount,Allowance,PersonID")] Trainer trainer)
+        public ActionResult Create([Bind(Include = "LeaderID,Specialisation,SecondJob,Sallary,PersonID")] Leader leader)
         {
             if (ModelState.IsValid)
             {
-                db.Trainers.Add(trainer);
+                db.Leaders.Add(leader);
 
-                if (UserManager.GetRoles(trainer.TrainerID) != null)
-                { 
-                    if (UserManager.GetRoles(trainer.TrainerID).Contains("Leader"))
+                if (UserManager.GetRoles(leader.LeaderID) != null)
+                {
+                    if (UserManager.GetRoles(leader.LeaderID).Contains("Trainer"))
                     {
-                        Leader leader = db.Leaders.Find(trainer.TrainerID);
-                        UserManager.RemoveFromRole(leader.LeaderID, "Leader");
-                        db.Leaders.Remove(leader);
-                    } 
+                        Trainer trainer = db.Trainers.Find(leader.LeaderID);
+                        UserManager.RemoveFromRole(trainer.TrainerID, "Trainer");
+                        db.Trainers.Remove(trainer);
+                    }
                 }
 
-                UserManager.AddToRole(trainer.TrainerID, "Trainer");
+                UserManager.AddToRole(leader.LeaderID, "Leader");
+
 
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TrainerID = new SelectList(db.Users, "Id", "FirstName", trainer.TrainerID);
-            return View(trainer);
+            ViewBag.LeaderID = new SelectList(db.Users, "Id", "FirstName", leader.LeaderID);
+            return View(leader);
         }
 
-        // GET: Trainers/Edit/5
+        // GET: Leaders/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trainer trainer = db.Trainers.Find(id);
-            if (trainer == null)
+            Leader leader = db.Leaders.Find(id);
+            if (leader == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.TrainerID = new SelectList(db.Users, "Id", "FirstName", trainer.TrainerID);
-            return View(trainer);
+            ViewBag.LeaderID = new SelectList(db.Users, "Id", "FirstName", leader.LeaderID);
+            return View(leader);
         }
 
-        // POST: Trainers/Edit/5
+        // POST: Leaders/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TrainerID,CatchedPokemonsAmount,DexCompleteAmount,Allowance,PersonID")] Trainer trainer)
+        public ActionResult Edit([Bind(Include = "LeaderID,Specialisation,SecondJob,Sallary,PersonID")] Leader leader)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(trainer).State = EntityState.Modified;
+                db.Entry(leader).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TrainerID = new SelectList(db.Users, "Id", "FirstName", trainer.TrainerID);
-            return View(trainer);
+            ViewBag.LeaderID = new SelectList(db.Users, "Id", "FirstName", leader.LeaderID);
+            return View(leader);
         }
 
-        // GET: Trainers/Delete/5
+        // GET: Leaders/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            Leader leader = db.Leaders.Include(p => p.Person).SingleOrDefault(x => x.LeaderID == id);
 
-            Trainer trainer = db.Trainers.Include(p => p.Person).SingleOrDefault(x => x.TrainerID == id);
-
-            if (trainer == null)
+            if (leader == null)
             {
                 return HttpNotFound();
             }
-            return View(trainer);
+            return View(leader);
         }
 
-        // POST: Trainers/Delete/5
+        // POST: Leaders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Trainer trainer = db.Trainers.Find(id);
-            UserManager.RemoveFromRole(trainer.TrainerID, "Trainer");
-            db.Trainers.Remove(trainer);
-
+            Leader leader = db.Leaders.Find(id);
+            UserManager.RemoveFromRole(leader.LeaderID, "Leader");
+            db.Leaders.Remove(leader);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

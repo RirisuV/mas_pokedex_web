@@ -1,7 +1,8 @@
 ﻿@model pokemonWebProject.Models.pokemonModels.Trainer
 
 @{
-    Layout = null;
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -43,14 +44,6 @@
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Allowance, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Allowance, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.PersonID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PersonID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PersonID, "", new { @class = "text-danger" })
                 </div>
             </div>
     

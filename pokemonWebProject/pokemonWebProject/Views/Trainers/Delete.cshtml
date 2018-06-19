@@ -1,7 +1,8 @@
 ﻿@model pokemonWebProject.Models.pokemonModels.Trainer
 
 @{
-    Layout = null;
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -47,14 +48,6 @@
     
             <dd>
                 @Html.DisplayFor(model => model.Allowance)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.PersonID)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.PersonID)
             </dd>
     
         </dl>

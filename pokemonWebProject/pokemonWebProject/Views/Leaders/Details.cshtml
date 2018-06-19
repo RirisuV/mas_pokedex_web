@@ -1,0 +1,51 @@
+﻿@model pokemonWebProject.Models.pokemonModels.Leader
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Leader</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Person.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Person.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Specialisation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Specialisation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondJob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondJob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sallary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sallary)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LeaderID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

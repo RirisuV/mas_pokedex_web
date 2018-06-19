@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using pokemonWebProject.DAL;
 using pokemonWebProject.Models;
 using Microsoft.AspNet.Identity;
+using pokemonWebProject.Models.pokemonModels;
+using Microsoft.Owin.Security;
 
 namespace pokemonWebProject.Controllers
 {
@@ -86,8 +88,6 @@ namespace pokemonWebProject.Controllers
         }
 
         // POST: ApplicationUsers/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,FirstName,SecondName,DateOfBirth,Money,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
@@ -125,8 +125,30 @@ namespace pokemonWebProject.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             ApplicationUser applicationUser = db.Users.Find(id);
+
+            Trainer trainer = db.Trainers.Find(id);
+            Leader leader = db.Leaders.Find(id);
+
+            if (trainer != null)
+            {
+                db.Trainers.Remove(trainer);
+            }
+            if (leader != null)
+            {
+                db.Leaders.Remove(leader);
+            }
+
             db.Users.Remove(applicationUser);
             db.SaveChanges();
+
+            int currentUserId = Int32.Parse(User.Identity.GetUserId());
+
+            if (currentUserId == id)
+            {
+                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                return RedirectToAction("Index", "Home");
+            }
+
             return RedirectToAction("Index");
         }
 
@@ -137,6 +159,14 @@ namespace pokemonWebProject.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
         }
     }
 }
