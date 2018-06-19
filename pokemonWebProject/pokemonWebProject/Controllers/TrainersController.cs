@@ -41,6 +41,7 @@ namespace pokemonWebProject.Controllers
         }
 
         // GET: Trainers/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.TrainerID = new SelectList(db.Users, "Id", "FirstName");
@@ -52,6 +53,7 @@ namespace pokemonWebProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "TrainerID,CatchedPokemonsAmount,DexCompleteAmount,Allowance,PersonID")] Trainer trainer)
         {
             if (ModelState.IsValid)
@@ -81,6 +83,7 @@ namespace pokemonWebProject.Controllers
         }
 
         // GET: Trainers/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -101,6 +104,7 @@ namespace pokemonWebProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "TrainerID,CatchedPokemonsAmount,DexCompleteAmount,Allowance,PersonID")] Trainer trainer)
         {
             if (ModelState.IsValid)
@@ -114,6 +118,7 @@ namespace pokemonWebProject.Controllers
         }
 
         // GET: Trainers/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -133,6 +138,7 @@ namespace pokemonWebProject.Controllers
         // POST: Trainers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Trainer trainer = db.Trainers.Find(id);

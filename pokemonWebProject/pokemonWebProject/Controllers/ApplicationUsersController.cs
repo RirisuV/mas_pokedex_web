@@ -26,6 +26,7 @@ namespace pokemonWebProject.Controllers
         }
 
         // GET: ApplicationUsers/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -70,6 +71,7 @@ namespace pokemonWebProject.Controllers
         //}
 
         // GET: ApplicationUsers/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +92,7 @@ namespace pokemonWebProject.Controllers
         // POST: ApplicationUsers/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,FirstName,SecondName,DateOfBirth,Money,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
         {
             if (ModelState.IsValid)
@@ -105,6 +108,7 @@ namespace pokemonWebProject.Controllers
         }
 
         // GET: ApplicationUsers/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -122,6 +126,7 @@ namespace pokemonWebProject.Controllers
         // POST: ApplicationUsers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             ApplicationUser applicationUser = db.Users.Find(id);

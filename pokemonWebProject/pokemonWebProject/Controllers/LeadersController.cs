@@ -19,6 +19,8 @@ namespace pokemonWebProject.Controllers
         private ApplicationUserManager _userManager;
 
         // GET: Leaders
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Trainer")]
         public ActionResult Index()
         {
             var leaders = db.Leaders.Include(l => l.Person);
@@ -26,6 +28,8 @@ namespace pokemonWebProject.Controllers
         }
 
         // GET: Leaders/Details/5
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Trainer")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -43,6 +47,7 @@ namespace pokemonWebProject.Controllers
         }
 
         // GET: Leaders/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.LeaderID = new SelectList(db.Users, "Id", "FirstName");
@@ -54,6 +59,7 @@ namespace pokemonWebProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "LeaderID,Specialisation,SecondJob,Sallary,PersonID")] Leader leader)
         {
             if (ModelState.IsValid)
@@ -82,6 +88,7 @@ namespace pokemonWebProject.Controllers
         }
 
         // GET: Leaders/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -102,6 +109,7 @@ namespace pokemonWebProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "LeaderID,Specialisation,SecondJob,Sallary,PersonID")] Leader leader)
         {
             if (ModelState.IsValid)
@@ -115,6 +123,7 @@ namespace pokemonWebProject.Controllers
         }
 
         // GET: Leaders/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -133,6 +142,7 @@ namespace pokemonWebProject.Controllers
         // POST: Leaders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Leader leader = db.Leaders.Find(id);
