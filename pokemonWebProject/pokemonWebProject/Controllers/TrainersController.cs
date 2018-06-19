@@ -69,7 +69,14 @@ namespace pokemonWebProject.Controllers
                         Leader leader = db.Leaders.Find(trainer.TrainerID);
                         UserManager.RemoveFromRole(leader.LeaderID, "Leader");
                         db.Leaders.Remove(leader);
-                    } 
+                    }
+
+                    var challenge = db.Challenges.Where(x => x.CurrentLeaderID == trainer.TrainerID).ToList();
+                    foreach (var ch in challenge)
+                    {
+                        db.Challenges.Remove(ch);
+                    }
+
                 }
 
                 UserManager.AddToRole(trainer.TrainerID, "Trainer");

@@ -19,8 +19,8 @@ namespace pokemonWebProject.Controllers
         private ApplicationUserManager _userManager;
 
         // GET: Leaders
-        [Authorize(Roles = "Admin")]
-        [Authorize(Roles = "Trainer")]
+        [Authorize(Roles = "Admin, Trainer")]
+        
         public ActionResult Index()
         {
             var leaders = db.Leaders.Include(l => l.Person);
@@ -28,8 +28,7 @@ namespace pokemonWebProject.Controllers
         }
 
         // GET: Leaders/Details/5
-        [Authorize(Roles = "Admin")]
-        [Authorize(Roles = "Trainer")]
+        [Authorize(Roles = "Admin, Trainer")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -73,11 +72,16 @@ namespace pokemonWebProject.Controllers
                         Trainer trainer = db.Trainers.Find(leader.LeaderID);
                         UserManager.RemoveFromRole(trainer.TrainerID, "Trainer");
                         db.Trainers.Remove(trainer);
+
+                        var challenge = db.Challenges.Where(x => x.CurrentTrainerID == leader.LeaderID).ToList();
+                        foreach (var ch in challenge)
+                        {
+                            db.Challenges.Remove(ch);
+                        }
                     }
                 }
 
                 UserManager.AddToRole(leader.LeaderID, "Leader");
-
 
                 db.SaveChanges();
                 return RedirectToAction("Index");

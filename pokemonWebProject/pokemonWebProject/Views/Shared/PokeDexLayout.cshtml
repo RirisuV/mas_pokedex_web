@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Half Slider - Start Bootstrap Template</title>
+    <title>PokeDex</title>
     <!-- Bootstrap core CSS -->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -19,38 +19,70 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Start Bootstrap</a>
+            <a class="navbar-brand" href="#"> @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
+            <a class="nav-item">@Html.Partial("_LoginPartial")</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">
-                            Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
+                @if (!Request.IsAuthenticated)
+                {
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Lorem</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Lorem</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Lorem</a>
+                        </li>
+                    </ul>
+                } else if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Użytkownicy", "Index", "ApplicationUsers", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Trenerzy", "Index", "Trainers", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Liderzy", "Index", "Leaders", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                    </ul>
+                } else if (Request.IsAuthenticated && User.IsInRole("Trainer"))
+                {
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Liderzy", "Index", "Leaders", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                    </ul>
+                } else if (Request.IsAuthenticated && User.IsInRole("Leader"))
+                {
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                             @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Wyzwania", "Index", "Challenges", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                    </ul>
+                }
             </div>
         </div>
     </nav>
     <header>
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
         <div class="carousel-inner" role="listbox">
           <!-- Slide One - Set the background image for this slide in the line below -->
           <div class="carousel-item active" style="background-image: url('../../Content/Images/wallpaper1.png')">
@@ -75,10 +107,9 @@
     </section>
     <!-- Footer -->
     <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
-        </div>
-        <!-- /.container -->
+        <center>
+            created by s13711 Marcin Krupa, project MAS
+        </center>
     </footer>
     <!-- Bootstrap core JavaScript -->
     <script src="~/Scripts/jquery.min.js"></script>

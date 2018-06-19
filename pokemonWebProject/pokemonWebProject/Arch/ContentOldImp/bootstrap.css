@@ -4529,6 +4529,12 @@ textarea.input-group-sm > .input-group-btn > .btn {
   background-color: transparent;
 }
 
+.loginLinks > a:hover,
+.loginLinks > a:focus {
+    background-color: #343a40;
+    color: #343a40;
+}
+
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {

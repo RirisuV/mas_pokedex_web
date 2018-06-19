@@ -19,6 +19,7 @@ namespace pokemonWebProject.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: ApplicationUsers
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var applicationUsers = db.Users.Include(a => a.Leader).Include(a => a.Professor).Include(a => a.Trainer);
@@ -40,35 +41,6 @@ namespace pokemonWebProject.Controllers
             }
             return View(applicationUser);
         }
-
-        // GET: ApplicationUsers/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.Id = new SelectList(db.Leaders, "LeaderID", "Specialisation");
-        //    ViewBag.Id = new SelectList(db.Professors, "ProfessorID", "Specialisation");
-        //    ViewBag.Id = new SelectList(db.Trainers, "TrainerID", "TrainerID");
-        //    return View();
-        //}
-
-        //// POST: ApplicationUsers/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "Id,FirstName,SecondName,DateOfBirth,Money,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Users.Add(applicationUser);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    ViewBag.Id = new SelectList(db.Leaders, "LeaderID", "Specialisation", applicationUser.Id);
-        //    ViewBag.Id = new SelectList(db.Professors, "ProfessorID", "Specialisation", applicationUser.Id);
-        //    ViewBag.Id = new SelectList(db.Trainers, "TrainerID", "TrainerID", applicationUser.Id);
-        //    return View(applicationUser);
-        //}
 
         // GET: ApplicationUsers/Edit/5
         [Authorize(Roles = "Admin")]
@@ -141,6 +113,12 @@ namespace pokemonWebProject.Controllers
             if (leader != null)
             {
                 db.Leaders.Remove(leader);
+            }
+
+            var challenge = db.Challenges.Where(x => x.CurrentTrainerID == id).ToList();
+            foreach (var ch in challenge)
+            {
+                db.Challenges.Remove(ch);
             }
 
             int currentUserId = Int32.Parse(User.Identity.GetUserId());

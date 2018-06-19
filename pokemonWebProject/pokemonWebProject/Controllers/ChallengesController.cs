@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -41,6 +42,7 @@ namespace pokemonWebProject.Controllers
         }
 
         // GET: Challenges/CreateByTrainer/5
+        [Authorize(Roles = "Trainer")]
         public ActionResult CreateByTrainer(int id)
         {
             Challenge challenge = new Challenge();
@@ -53,6 +55,7 @@ namespace pokemonWebProject.Controllers
         // POST: Challenges/CreateByLeader
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Trainer")]
         public ActionResult CreateByTrainer([Bind(Include = "ChallengeID,ChallengeDate,Description,Result,AsAccepted,DeclineReasonTopic,DeclineReasonDescription,CurrentLeaderID,CurrentTrainerID")] Challenge challenge)
         {
             if (ModelState.IsValid)
@@ -76,6 +79,7 @@ namespace pokemonWebProject.Controllers
         }
 
         // GET: Challenges/Accept/5
+        [Authorize(Roles = "Leader")]
         public ActionResult Accept(int? id)
         {
             if (id == null)
@@ -95,6 +99,7 @@ namespace pokemonWebProject.Controllers
         // POST: Challenges/Accept/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Leader")]
         public ActionResult Accept([Bind(Include = "ChallengeID,ChallengeDate,Description,Result,AsAccepted,DeclineReasonTopic,DeclineReasonDescription,CurrentLeaderID,CurrentTrainerID")] Challenge challenge)
         {
             if (ModelState.IsValid)
@@ -112,6 +117,9 @@ namespace pokemonWebProject.Controllers
 
                 db.Entry(result).State = EntityState.Modified;
                 db.SaveChanges();
+
+                sendAcceptInfoEmail(challenge.CurrentTrainerID);
+
                 return RedirectToAction("Index");
             }
 
@@ -120,7 +128,22 @@ namespace pokemonWebProject.Controllers
             return View(challenge);
         }
 
+        public void sendAcceptInfoEmail(int trainerID)
+        {
+
+            //var trainer = db.Trainers.FirstOrDefault(x => x.Person.Id == trainerID).Person.Email;
+
+            var trainer = db.Trainers.Include(x => x.Person).SingleOrDefault(x => x.TrainerID == trainerID).Person.Email;
+
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+            smtp.EnableSsl = true;
+            smtp.Port = 587;
+            smtp.Credentials = new NetworkCredential("mas.projekt.api2@gmail.com", "Pjatk1234!");
+            smtp.Send("mas.projekt.api2@gmail.com", trainer, "Akceptacja pojedynku!", "Pojedynek odbędzie się... blablabla...");
+        }
+
         // GET: Challenges/Decline/5
+        [Authorize(Roles = "Leader")]
         public ActionResult Decline(int? id)
         {
             if (id == null)
@@ -139,6 +162,7 @@ namespace pokemonWebProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Leader")]
         public ActionResult Decline([Bind(Include = "ChallengeID,ChallengeDate,Description,Result,AsAccepted,DeclineReasonTopic,DeclineReasonDescription,CurrentLeaderID,CurrentTrainerID")] Challenge challenge)
         {
             if (ModelState.IsValid)
