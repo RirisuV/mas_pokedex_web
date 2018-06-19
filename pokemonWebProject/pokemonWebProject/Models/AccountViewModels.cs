@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using static pokemonWebProject.Models.ApplicationUser;
 
 namespace pokemonWebProject.Models
 {
@@ -79,6 +80,14 @@ namespace pokemonWebProject.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string SecondName { get; set; }
+
+        public CustomRole CustomRole { get; set; }
+
+        public int CustomRoleID { get; set; }
     }
 
     public class ResetPasswordViewModel

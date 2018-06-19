@@ -39,33 +39,33 @@ namespace pokemonWebProject.Controllers
         }
 
         // GET: ApplicationUsers/Create
-        public ActionResult Create()
-        {
-            ViewBag.Id = new SelectList(db.Leaders, "LeaderID", "Specialisation");
-            ViewBag.Id = new SelectList(db.Professors, "ProfessorID", "Specialisation");
-            ViewBag.Id = new SelectList(db.Trainers, "TrainerID", "TrainerID");
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    ViewBag.Id = new SelectList(db.Leaders, "LeaderID", "Specialisation");
+        //    ViewBag.Id = new SelectList(db.Professors, "ProfessorID", "Specialisation");
+        //    ViewBag.Id = new SelectList(db.Trainers, "TrainerID", "TrainerID");
+        //    return View();
+        //}
 
-        // POST: ApplicationUsers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,SecondName,DateOfBirth,Money,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Users.Add(applicationUser);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //// POST: ApplicationUsers/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "Id,FirstName,SecondName,DateOfBirth,Money,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Users.Add(applicationUser);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            ViewBag.Id = new SelectList(db.Leaders, "LeaderID", "Specialisation", applicationUser.Id);
-            ViewBag.Id = new SelectList(db.Professors, "ProfessorID", "Specialisation", applicationUser.Id);
-            ViewBag.Id = new SelectList(db.Trainers, "TrainerID", "TrainerID", applicationUser.Id);
-            return View(applicationUser);
-        }
+        //    ViewBag.Id = new SelectList(db.Leaders, "LeaderID", "Specialisation", applicationUser.Id);
+        //    ViewBag.Id = new SelectList(db.Professors, "ProfessorID", "Specialisation", applicationUser.Id);
+        //    ViewBag.Id = new SelectList(db.Trainers, "TrainerID", "TrainerID", applicationUser.Id);
+        //    return View(applicationUser);
+        //}
 
         // GET: ApplicationUsers/Edit/5
         public ActionResult Edit(int? id)

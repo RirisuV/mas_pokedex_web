@@ -1,0 +1,66 @@
+﻿@model pokemonWebProject.Models.pokemonModels.Trainer
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Trainer</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Person.FirstName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Person.FirstName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CatchedPokemonsAmount)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CatchedPokemonsAmount)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DexCompleteAmount)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DexCompleteAmount)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Allowance)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Allowance)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PersonID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PersonID)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.TrainerID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
