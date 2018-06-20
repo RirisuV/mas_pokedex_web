@@ -276,7 +276,7 @@ namespace pokemonWebProject.Controllers
             SmtpClient smtp = new SmtpClient("smtp.gmail.com");
             smtp.EnableSsl = true;
             smtp.Port = 587;
-            smtp.Credentials = new NetworkCredential("mas.projekt.api2@gmail.com", emailPassword);
+            smtp.Credentials = new NetworkCredential(mailClient, emailPassword);
             smtp.Send(mailClient, email, "Odrzucenie pojedynku!", "Pojedynek nie odbędzie się z powodu... blablabla...");
         }
 
