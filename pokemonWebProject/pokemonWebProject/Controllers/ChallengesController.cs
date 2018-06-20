@@ -253,7 +253,8 @@ namespace pokemonWebProject.Controllers
             return currentUser.Id;
         }
 
-        private readonly static string mailClient = "yourmail_ @gmail.com";
+        private readonly static string mailClient = "app_mail@gmail.com";
+        private readonly static string emailPassword = "password_to_mailClient";
 
         public void sendAcceptInfoEmail(int trainerID)
         {
@@ -275,7 +276,7 @@ namespace pokemonWebProject.Controllers
             SmtpClient smtp = new SmtpClient("smtp.gmail.com");
             smtp.EnableSsl = true;
             smtp.Port = 587;
-            smtp.Credentials = new NetworkCredential("mas.projekt.api2@gmail.com", "Pjatk1234!");
+            smtp.Credentials = new NetworkCredential("mas.projekt.api2@gmail.com", emailPassword);
             smtp.Send(mailClient, email, "Odrzucenie pojedynku!", "Pojedynek nie odbędzie się z powodu... blablabla...");
         }
 
