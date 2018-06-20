@@ -253,6 +253,8 @@ namespace pokemonWebProject.Controllers
             return currentUser.Id;
         }
 
+        private readonly static string mailClient = "yourmail_ @gmail.com";
+
         public void sendAcceptInfoEmail(int trainerID)
         {
             var trainer = db.Trainers.Include(x => x.Person).SingleOrDefault(x => x.TrainerID == trainerID).Person;
@@ -262,7 +264,7 @@ namespace pokemonWebProject.Controllers
             smtp.EnableSsl = true;
             smtp.Port = 587;
             smtp.Credentials = new NetworkCredential("mas.projekt.api2@gmail.com", "Pjatk1234!");
-            smtp.Send("mas.projekt.api2@gmail.com", email, "Akceptacja pojedynku!", "Pojedynek odbędzie się... blablabla...");
+            smtp.Send(mailClient, email, "Akceptacja pojedynku!", "Pojedynek odbędzie się... blablabla...");
         }
 
         public void sendDeclineInfoEmail(int trainerID)
@@ -274,7 +276,7 @@ namespace pokemonWebProject.Controllers
             smtp.EnableSsl = true;
             smtp.Port = 587;
             smtp.Credentials = new NetworkCredential("mas.projekt.api2@gmail.com", "Pjatk1234!");
-            smtp.Send("mas.projekt.api2@gmail.com", email, "Odrzucenie pojedynku!", "Pojedynek nie odbędzie się z powodu... blablabla...");
+            smtp.Send(mailClient, email, "Odrzucenie pojedynku!", "Pojedynek nie odbędzie się z powodu... blablabla...");
         }
 
     }
