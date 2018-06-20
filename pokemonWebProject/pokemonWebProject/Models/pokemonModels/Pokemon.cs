@@ -83,6 +83,30 @@ namespace pokemonWebProject.Models.pokemonModels
             return pkmn;
         }
 
+        public void addPartFighter(Fighter fighter)
+        {
+            if (!Fighter.Equals(fighter))
+            {
+                Fighter = fighter;
+            }
+        }
+
+        public void addPartContester(Contester contester)
+        {
+            if (!Contester.Equals(contester))
+            {
+                Contester = contester;
+            }
+        }
+
+        public void addPartAcquire(Acquire acquire)
+        {
+            if (!Acquire.Equals(acquire))
+            {
+                Acquire = acquire;
+            }
+        }
+
         // przeciazenie
         public double getExperience()
         {

@@ -19,5 +19,27 @@ namespace pokemonWebProject.Models.pokemonModels
         public Pokemon Pokemon { get; set; }
         public int PokemonID { get; set; }
 
+
+        public Contester(Pokemon Pokemon, int ContesterID, string Specialisation)
+        {
+            this.ContesterID = ContesterID;
+            this.Specialisation = Specialisation;
+            this.Pokemon = Pokemon;
+        }
+
+        public static Contester createPart(Pokemon Pokemon, int ContesterID, string Specialisation)
+        {
+            if (Pokemon == null)
+            {
+                throw new Exception("Pokemon doesn't exists");
+            }
+
+            Contester contPart = new Contester(Pokemon, ContesterID, Specialisation);
+
+            Pokemon.addPartContester(contPart);
+
+            return contPart;
+        }
+
     }
 }
