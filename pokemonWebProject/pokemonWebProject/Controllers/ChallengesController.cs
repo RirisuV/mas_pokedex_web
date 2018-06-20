@@ -128,20 +128,6 @@ namespace pokemonWebProject.Controllers
             return View(challenge);
         }
 
-        public void sendAcceptInfoEmail(int trainerID)
-        {
-
-            //var trainer = db.Trainers.FirstOrDefault(x => x.Person.Id == trainerID).Person.Email;
-
-            var trainer = db.Trainers.Include(x => x.Person).SingleOrDefault(x => x.TrainerID == trainerID).Person.Email;
-
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com");
-            smtp.EnableSsl = true;
-            smtp.Port = 587;
-            smtp.Credentials = new NetworkCredential("mas.projekt.api2@gmail.com", "Pjatk1234!");
-            smtp.Send("mas.projekt.api2@gmail.com", trainer, "Akceptacja pojedynku!", "Pojedynek odbędzie się... blablabla...");
-        }
-
         // GET: Challenges/Decline/5
         [Authorize(Roles = "Leader")]
         public ActionResult Decline(int? id)
@@ -180,6 +166,9 @@ namespace pokemonWebProject.Controllers
 
                 db.Entry(result).State = EntityState.Modified;
                 db.SaveChanges();
+
+                sendDeclineInfoEmail(challenge.CurrentTrainerID);
+
                 return RedirectToAction("Index");
             }
 
@@ -262,6 +251,30 @@ namespace pokemonWebProject.Controllers
             var currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserId);
 
             return currentUser.Id;
+        }
+
+        public void sendAcceptInfoEmail(int trainerID)
+        {
+            var trainer = db.Trainers.Include(x => x.Person).SingleOrDefault(x => x.TrainerID == trainerID).Person;
+            var email = trainer.Email;
+
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+            smtp.EnableSsl = true;
+            smtp.Port = 587;
+            smtp.Credentials = new NetworkCredential("mas.projekt.api2@gmail.com", "Pjatk1234!");
+            smtp.Send("mas.projekt.api2@gmail.com", email, "Akceptacja pojedynku!", "Pojedynek odbędzie się... blablabla...");
+        }
+
+        public void sendDeclineInfoEmail(int trainerID)
+        {
+            var trainer = db.Trainers.Include(x => x.Person).SingleOrDefault(x => x.TrainerID == trainerID).Person;
+            var email = trainer.Email;
+
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+            smtp.EnableSsl = true;
+            smtp.Port = 587;
+            smtp.Credentials = new NetworkCredential("mas.projekt.api2@gmail.com", "Pjatk1234!");
+            smtp.Send("mas.projekt.api2@gmail.com", email, "Odrzucenie pojedynku!", "Pojedynek nie odbędzie się z powodu... blablabla...");
         }
 
     }
