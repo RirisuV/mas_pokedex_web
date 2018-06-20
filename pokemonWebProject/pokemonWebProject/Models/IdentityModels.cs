@@ -33,6 +33,11 @@ namespace pokemonWebProject.Models
 
         public virtual Professor Professor { get; set; }
 
+        public double getCurrentAge()
+        {
+            return (DateTime.Now - DateOfBirth).TotalDays / 365;
+        }
+
 
 
         // IDENTITY

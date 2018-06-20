@@ -16,5 +16,6 @@ namespace pokemonWebProject.Models.pokemonModels
         [Required]
         public Pokemon Pokemon { get; set; }
         public int PokemonID { get; set; }
+
     }
 }

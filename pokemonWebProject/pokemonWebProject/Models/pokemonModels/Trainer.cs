@@ -35,6 +35,15 @@ namespace pokemonWebProject.Models.pokemonModels
             return 0;
         }
 
+        public bool hasLegalAge(ApplicationUser user)
+        {
+            var years = (DateTime.Now - user.DateOfBirth).TotalDays / 365;
+            return years >= minAge ? true : false;
+        }
+
+        // klasowy
+        public static int minAge = 12;
+
     }
 
 }

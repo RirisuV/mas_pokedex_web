@@ -13,5 +13,15 @@ namespace pokemonWebProject.Models.pokemonModels
         // many to one
         public ICollection<Fighter> Fighters { get; set; }
 
+        public HeldItem(int ItemID, string Name, string Effect, bool CanDrop) 
+            : base(ItemID, Name, Effect)
+        {
+            this.CanDrop = CanDrop;
+        }
+
+        public override string getFullDesc()
+        {
+            return Effect + " | Przedmiotu " + CanDrop + " można upuścić";
+        }
     }
 }

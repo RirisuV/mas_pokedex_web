@@ -16,5 +16,16 @@ namespace pokemonWebProject.Models.pokemonModels
 
         public string Effect { get; set; }
 
+        public Item(int ItemID, string Name, string Effect) 
+            : base()
+        {
+
+            this.ItemID = ItemID;
+            this.Name = Name;
+            this.Effect = Effect;
+        }
+
+        public abstract String getFullDesc();
+
     }
 }

@@ -227,6 +227,8 @@
     <Compile Include="Models\pokemonModels\PokeType.cs" />
     <Compile Include="Models\ViewModel\ChallengeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\GenericRepository.cs" />
+    <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -437,6 +439,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Pokemon\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

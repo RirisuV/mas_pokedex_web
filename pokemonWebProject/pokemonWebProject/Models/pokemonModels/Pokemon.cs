@@ -55,7 +55,7 @@ namespace pokemonWebProject.Models.pokemonModels
         public Acquire Acquire { get; set; }
         public int AcquireID { get; set; }
 
-
+        // KOMPOZYCJA
         private Pokemon(PokemonSpecies PokemonSpecies, int PokemonID, string Nickname, 
             string Gender, int Level, double Experience, int Happiness)
         {
@@ -83,7 +83,17 @@ namespace pokemonWebProject.Models.pokemonModels
             return pkmn;
         }
 
-        // resharper jetbrain
+        // przeciazenie
+        public double getExperience()
+        {
+            return Experience;
+        }
+
+        public double getExperience(int level)
+        {
+            return Experience * level;
+        }
+
 
     }
 }
